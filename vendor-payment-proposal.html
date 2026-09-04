@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Payment Proposal in D365 Finance — MS D365 F&O</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="app-bar">
+    <a class="site-title-link" href="../index.html">
+      <div class="grid-icon"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="site-title">MS D365 F&O</span>
+      <span class="site-sub">| Exploring D365 Finance and Operations</span>
+    </a>
+    <div class="spacer"></div>
+    <div class="avatar">AT</div>
+  </div>
+
+  <div class="shell">
+    <div class="nav-pane">
+      <div class="nav-section-label">SITE</div>
+      <a class="nav-item" href="../index.html">Home</a>
+      <a class="nav-item" href="../about.html">About</a>
+      <a class="nav-item" href="../contact.html">Contact</a>
+    </div>
+
+    <div class="main narrow">
+      <div class="breadcrumb">
+        <a href="../index.html">MS D365 F&O</a><span class="sep">›</span>
+        <a href="../index.html">Accounts payable</a><span class="sep">›</span>
+        Vendor Payment Proposal
+      </div>
+
+      <div class="command-bar">
+        <a class="cmd-btn" href="../index.html" style="text-decoration:none;"><span class="cmd-icon">←</span><span class="cmd-label">Back</span></a>
+        <div class="cmd-sep"></div>
+        <div class="cmd-btn"><span class="cmd-icon">↗</span><span class="cmd-label">Share</span></div>
+      </div>
+
+      <div class="post-header">
+        <h1 class="post-title">Vendor Payment Proposal in D365 Finance</h1>
+        <div class="post-meta">
+          <span class="badge">Accounts payable</span>
+          <span class="status-dot">Published</span>
+          <span>Sep 1, 2026</span>
+          <span>Aayush Tiwari</span>
+          <span>7 min read</span>
+        </div>
+      </div>
+
+      <div class="fasttabs attached">
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Overview</div>
+          <div class="fasttab-body">
+            <p>One of the most underrated yet powerful tools in Dynamics 365 Finance & Operations is the Vendor Payment Proposal process. For anyone in Accounts Payable, managing vendor payments can feel like juggling due dates, discounts, payment methods, and approval timelines — the payment proposal feature is where automation steps in.</p>
+            <p>In simple terms, it's a way to automatically select vendor invoices for payment based on predefined criteria: due date or cash discount date, payment method or currency, vendor group, and legal entity. Instead of manually scanning hundreds of invoices, the system picks the ones that are due — letting finance teams focus on review and approval.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>How it works in D365 F&O</div>
+          <div class="fasttab-body">
+            <ul>
+              <li>Navigate to: <strong>Accounts Payable &gt; Payments &gt; Vendor payment journal</strong></li>
+              <li>Create a new journal or select an existing one, then go to lines</li>
+              <li>Click <strong>Payment proposal → Create payment proposal</strong></li>
+              <li>Define filters — e.g. all invoices due before the 10th, or eligible for early payment discounts</li>
+              <li>Review the proposed list and make adjustments if needed</li>
+              <li>Generate payments via bank file, check, or another configured method</li>
+            </ul>
+            <p>The system settles invoices automatically once payments are posted — streamlining the entire pay-run process.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Real-world benefits</div>
+          <div class="fasttab-body">
+            <ul>
+              <li><strong>Efficiency & automation</strong> — proposals automatically pick due or discount-eligible invoices, cutting processing time</li>
+              <li><strong>Cash flow optimization</strong> — plan disbursements strategically, take early discounts or defer non-urgent payments</li>
+              <li><strong>Error reduction</strong> — system-driven logic lowers the risk of duplicate or missed payments</li>
+              <li><strong>Standardization & control</strong> — consistent, rule-based selection with clear audit trails</li>
+              <li><strong>Better vendor relationships</strong> — on-time, accurate payments build supplier trust</li>
+              <li><strong>Visibility</strong> — the proposal report shows who's getting paid, when, and how</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Implementation notes</div>
+          <div class="fasttab-body">
+            <p>Having implemented this across automobile, beauty, jewelry, and manufacturing clients, a few lessons stand out:</p>
+            <ul>
+              <li>Set clear filters and criteria aligned with business rules</li>
+              <li>Ensure vendor master data (payment terms, methods, bank details) is clean before go-live</li>
+              <li>Introduce workflow approvals for payment journals to maintain accountability</li>
+              <li>Automate recurring proposals for clients running weekly or bi-weekly pay runs</li>
+              <li>Train AP users not to skip the review step — automation doesn't replace validation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Related posts</div>
+          <div class="fasttab-body">
+            <p><a href="procure-to-pay.html">Understanding the Procure-to-Pay (P2P) Cycle in D365 F&O</a></p>
+            <p><a href="order-to-cash.html">Navigating the Order-to-Cash (O2C) Cycle in D365 F&O</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../script.js"></script>
+</body>
+</html>

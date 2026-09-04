@@ -1,0 +1,52 @@
+backend:
+  name: github
+  repo: AayushDynamics/MSD365FO
+  branch: main
+  base_url: https://heroic-rolypoly-cdf320.netlify.app
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    label_singular: "Post"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Module"
+        name: "module"
+        widget: "select"
+        options:
+          - "Accounts payable"
+          - "Accounts receivable"
+          - "Budgeting"
+          - "Cash and bank management"
+          - "Consolidations"
+          - "Cost accounting"
+          - "Expense management"
+          - "Fixed assets"
+          - "General ledger"
+          - "Inventory management"
+          - "Production control"
+          - "Tax"
+      - label: "Submodule"
+        name: "submodule"
+        widget: "select"
+        options:
+          - "Maintaining Master Data"
+          - "How to Blogs"
+          - "Module related accounting"
+          - "Inquiries and reports"
+          - "Configurations and setups"
+          - "Major Functionalities"
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Estimated Read Time", name: "readTime", widget: "string", default: "5 min", hint: "e.g. 5 min" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "1-2 sentence summary shown on the home page list" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
