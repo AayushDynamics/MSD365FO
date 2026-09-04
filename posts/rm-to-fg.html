@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Raw Materials to Finished Goods — MS D365 F&O</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="app-bar">
+    <a class="site-title-link" href="../index.html">
+      <div class="grid-icon"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="site-title">MS D365 F&O</span>
+      <span class="site-sub">| Exploring D365 Finance and Operations</span>
+    </a>
+    <div class="spacer"></div>
+    <div class="avatar">AT</div>
+  </div>
+
+  <div class="shell">
+    <div class="nav-pane">
+      <div class="nav-section-label">SITE</div>
+      <a class="nav-item" href="../index.html">Home</a>
+      <a class="nav-item" href="../about.html">About</a>
+      <a class="nav-item" href="../contact.html">Contact</a>
+      <div class="nav-divider"></div>
+      <div class="nav-section-label">MODULES</div>
+      <a class="nav-item" href="../index.html"><span class="dot"></span>Accounts payable</a>
+      <a class="nav-item" href="../index.html"><span class="dot"></span>Accounts receivable</a>
+      <a class="nav-item active" href="../index.html"><span class="dot"></span>Production control</a>
+      <a class="nav-item" href="../index.html"><span class="dot"></span>General ledger</a>
+    </div>
+
+    <div class="main narrow">
+      <div class="breadcrumb">
+        <a href="../index.html">MS D365 F&O</a><span class="sep">›</span>
+        <a href="../index.html">Production control</a><span class="sep">›</span>
+        RM to FG
+      </div>
+
+      <div class="command-bar">
+        <a class="cmd-btn" href="../index.html" style="text-decoration:none;"><span class="cmd-icon">←</span><span class="cmd-label">Back</span></a>
+        <div class="cmd-sep"></div>
+        <div class="cmd-btn"><span class="cmd-icon">↗</span><span class="cmd-label">Share</span></div>
+      </div>
+
+      <div class="post-header">
+        <h1 class="post-title">From Raw Materials to Finished Goods: A Comprehensive Journey in D365 F&O</h1>
+        <div class="post-meta">
+          <span class="badge">Production control</span>
+          <span class="status-dot">Published</span>
+          <span>Aug 31, 2026</span>
+          <span>Aayush Tiwari</span>
+          <span>9 min read</span>
+        </div>
+      </div>
+
+      <div class="fasttabs attached">
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Overview</div>
+          <div class="fasttab-body">
+            <p>In every manufacturing process, the transition from raw materials to finished goods involves critical stages, each contributing to operational and financial success. Here's a breakdown of the key events in this cycle and the corresponding accounting entries in D365 F&O.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>1. Production planning</div>
+          <div class="fasttab-body">
+            <p>This stage sets the foundation for efficient resource allocation and scheduling: demand forecasting from historical data, Master Planning (MRP) to generate planned orders, and production order creation defining the BOM and routing. No financial entries post here, but these activities are vital for material reservation and readiness.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>2. Production execution</div>
+          <div class="fasttab-body">
+            <p>Raw material and packing material picking list posting reserves and issues materials to production:</p>
+            <p><strong>Accounting:</strong> Work In Progress (Estimated) — Dr. &nbsp;|&nbsp; Raw Material Inventory (Estimated) — Cr. &nbsp;|&nbsp; Packing Material Inventory (Estimated) — Cr.</p>
+            <p>Job/route card posting tracks labor hours, machine usage, and overhead costs:</p>
+            <p><strong>Accounting:</strong> Work In Progress (Estimated) — Dr. &nbsp;|&nbsp; Labor/Machine Costs (Estimated) — Cr.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>3. Report production output</div>
+          <div class="fasttab-body">
+            <p>Report the completed quantity against the production order, before the quality check stage, to reflect partially or fully completed production.</p>
+            <p><strong>Report as finished — Accounting:</strong> Finished Goods estimated cost — Dr. &nbsp;|&nbsp; Work In Progress (Estimated) — Cr.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>4. Quality control</div>
+          <div class="fasttab-body">
+            <p>In-process inspections test WIP inventory during production; finished goods quality checks happen before adding to inventory. No direct financial entries here, but this step is key to maintaining quality and reducing wastage.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>5. Completion and costing</div>
+          <div class="fasttab-body">
+            <p>Production order ending marks the order as ended, transferring estimated cost to actual financial costs from WIP to finished goods.</p>
+            <p><strong>Accounting (reversal of picking list, route cards & report-as-finished entries):</strong></p>
+            <ul>
+              <li>Raw Material Inventory — Cr.</li>
+              <li>Packing Material Inventory — Cr.</li>
+              <li>Labor/Machine Costs (Estimated) — Cr.</li>
+              <li>Work In Progress — Dr. and Cr.</li>
+              <li>Finished Goods Inventory — Dr.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Related posts</div>
+          <div class="fasttab-body">
+            <p><a href="order-to-cash.html">Navigating the Order-to-Cash (O2C) Cycle in D365 F&O</a></p>
+            <p><a href="procure-to-pay.html">Understanding the Procure-to-Pay (P2P) Cycle in D365 F&O</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../script.js"></script>
+</body>
+</html>
