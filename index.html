@@ -91,7 +91,220 @@
     </div>
   </div>
 
-<script src="data.js"></script>
-<script src="script.js"></script>
+<script>
+// Central post data — add a new post by adding one object here
+// and creating the matching HTML file in /posts/
+var SITE_DATA = {
+  modules: [
+    "Accounts payable",
+    "Accounts receivable",
+    "Budgeting",
+    "Cash and bank management",
+    "Consolidations",
+    "Cost accounting",
+    "Expense management",
+    "Fixed assets",
+    "General ledger",
+    "Inventory management",
+    "Production control",
+    "Tax"
+  ],
+  submodules: [
+    "Maintaining Master Data",
+    "How to Blogs",
+    "Module related accounting",
+    "Inquiries and reports",
+    "Configurations and setups",
+    "Major Functionalities"
+  ],
+  posts: [
+    {
+      title: "Vendor Payment Proposal in D365 Finance",
+      url: "posts/vendor-payment-proposal.html",
+      module: "Accounts payable",
+      submodule: "Major Functionalities",
+      excerpt: "How the payment proposal process automates vendor invoice selection and cash flow planning in D365 F&O.",
+      date: "Sep 1, 2026",
+      dateSort: "2026-09-01",
+      readTime: "7 min"
+    },
+    {
+      title: "From Raw Materials to Finished Goods: A Comprehensive Journey",
+      url: "posts/rm-to-fg.html",
+      module: "Production control",
+      submodule: "Module related accounting",
+      excerpt: "Production planning, execution, and costing, with the accounting entries at each step of the RM-to-FG cycle.",
+      date: "Aug 31, 2026",
+      dateSort: "2026-08-31",
+      readTime: "9 min"
+    },
+    {
+      title: "Navigating the Order-to-Cash (O2C) Cycle",
+      url: "posts/order-to-cash.html",
+      module: "Accounts receivable",
+      submodule: "Module related accounting",
+      excerpt: "Order creation through picking, invoicing, and payment reconciliation, plus the accounting entries at each stage.",
+      date: "Aug 31, 2026",
+      dateSort: "2026-08-31",
+      readTime: "8 min"
+    },
+    {
+      title: "Understanding the Procure-to-Pay (P2P) Cycle",
+      url: "posts/procure-to-pay.html",
+      module: "Accounts payable",
+      submodule: "Module related accounting",
+      excerpt: "From requisition to payment execution, the full P2P journey, including three-way matching and GRNI accounting.",
+      date: "Aug 26, 2026",
+      dateSort: "2026-08-26",
+      readTime: "10 min"
+    }
+  ]
+};
+
+try {
+  var treeEl = document.getElementById('moduleTree');
+  var tbody = document.getElementById('postGridBody');
+  var countEl = document.getElementById('gridCount');
+  var titleEl = document.getElementById('gridTitle');
+  var gridPanel = document.getElementById('gridPanel');
+  var homeLink = document.getElementById('homeNavItem');
+  var searchBox = document.getElementById('searchBox');
+
+  // Group posts: module -> submodule -> [posts]
+  var grouped = {};
+  for (var i = 0; i < SITE_DATA.posts.length; i++) {
+    var post = SITE_DATA.posts[i];
+    if (!grouped[post.module]) grouped[post.module] = {};
+    if (!grouped[post.module][post.submodule]) grouped[post.module][post.submodule] = [];
+    grouped[post.module][post.submodule].push(post);
+  }
+
+  // Build tree HTML — only modules/submodules that have posts
+  var treeHTML = '';
+  for (var m = 0; m < SITE_DATA.modules.length; m++) {
+    var moduleName = SITE_DATA.modules[m];
+    if (!grouped[moduleName]) continue;
+
+    treeHTML += '<div class="module-row" data-module="' + moduleName + '">' +
+                  '<span class="tree-chevron">&#9656;</span>' +
+                  '<span class="module-name">' + moduleName + '</span>' +
+                '</div>';
+    treeHTML += '<div class="submodule-list" data-module-list="' + moduleName + '">';
+    for (var s = 0; s < SITE_DATA.submodules.length; s++) {
+      var subName = SITE_DATA.submodules[s];
+      if (!grouped[moduleName][subName]) continue;
+      var cnt = grouped[moduleName][subName].length;
+      treeHTML += '<div class="submodule-item" data-module="' + moduleName + '" data-submodule="' + subName + '">' +
+                    subName + ' <span style="opacity:.6">(' + cnt + ')</span>' +
+                  '</div>';
+    }
+    treeHTML += '</div>';
+  }
+  if (treeEl) treeEl.innerHTML = treeHTML;
+
+  function renderGrid(moduleFilter, submoduleFilter) {
+    if (!tbody) return;
+    var posts = SITE_DATA.posts.slice().sort(function (a, b) {
+      return a.dateSort < b.dateSort ? 1 : -1;
+    });
+    if (moduleFilter) posts = posts.filter(function (p) { return p.module === moduleFilter; });
+    if (submoduleFilter) posts = posts.filter(function (p) { return p.submodule === submoduleFilter; });
+
+    if (titleEl) {
+      titleEl.textContent = moduleFilter
+        ? (moduleFilter + (submoduleFilter ? ' \u2014 ' + submoduleFilter : ''))
+        : 'All posts';
+    }
+
+    if (posts.length === 0) {
+      tbody.innerHTML = '';
+      if (gridPanel) {
+        gridPanel.innerHTML = '<div class="empty-state"><div class="empty-title">No posts yet</div>' +
+          'There is nothing published in this section yet, check back soon.</div>';
+      }
+      if (countEl) countEl.textContent = '0 posts';
+      return;
+    }
+
+    var rowsHTML = '';
+    for (var r = 0; r < posts.length; r++) {
+      var p = posts[r];
+      rowsHTML += '<tr onclick="window.location=\'' + p.url + '\'">' +
+        '<td class="post-title-cell"><a href="' + p.url + '">' + p.title + '</a>' +
+        '<span class="post-excerpt">' + p.excerpt + '</span></td>' +
+        '<td><span class="badge">' + p.module + '</span></td>' +
+        '<td><span class="status-dot">Published</span></td>' +
+        '<td class="col-date">' + p.date + '</td>' +
+        '<td>' + p.readTime + '</td>' +
+        '</tr>';
+    }
+    tbody.innerHTML = rowsHTML;
+    if (countEl) countEl.textContent = posts.length + ' post' + (posts.length === 1 ? '' : 's');
+  }
+
+  if (treeEl) {
+    var moduleRows = treeEl.querySelectorAll('.module-row');
+    for (var mr = 0; mr < moduleRows.length; mr++) {
+      moduleRows[mr].addEventListener('click', function () {
+        this.classList.toggle('expanded');
+        var list = treeEl.querySelector('.submodule-list[data-module-list="' + this.getAttribute('data-module') + '"]');
+        if (list) list.classList.toggle('expanded');
+      });
+    }
+
+    var subItems = treeEl.querySelectorAll('.submodule-item');
+    for (var si = 0; si < subItems.length; si++) {
+      subItems[si].addEventListener('click', function (e) {
+        e.stopPropagation();
+        renderGrid(this.getAttribute('data-module'), this.getAttribute('data-submodule'));
+        var all = treeEl.querySelectorAll('.submodule-item');
+        for (var x = 0; x < all.length; x++) all[x].classList.remove('active');
+        this.classList.add('active');
+        if (homeLink) homeLink.classList.remove('active');
+      });
+    }
+  }
+
+  if (homeLink) {
+    homeLink.addEventListener('click', function () {
+      renderGrid(null, null);
+      if (treeEl) {
+        var all = treeEl.querySelectorAll('.submodule-item');
+        for (var x = 0; x < all.length; x++) all[x].classList.remove('active');
+      }
+      homeLink.classList.add('active');
+    });
+  }
+
+  if (searchBox) {
+    searchBox.addEventListener('input', function () {
+      var q = this.value.toLowerCase();
+      var rows = document.querySelectorAll('#postGridBody tr');
+      for (var rr = 0; rr < rows.length; rr++) {
+        var text = rows[rr].textContent.toLowerCase();
+        rows[rr].style.display = (q.length > 0 && text.indexOf(q) === -1) ? 'none' : '';
+      }
+    });
+  }
+
+  renderGrid(null, null);
+
+} catch (err) {
+  var panel = document.getElementById('gridPanel');
+  if (panel) {
+    panel.innerHTML = '<div class="empty-state"><div class="empty-title">Something went wrong loading posts</div>' + err.message + '</div>';
+  }
+}
+
+// FastTab collapse/expand (used on post pages, harmless here)
+document.addEventListener('click', function (e) {
+  var header = e.target.closest && e.target.closest('.fasttab-header');
+  if (header) {
+    header.classList.toggle('collapsed');
+    var body = header.nextElementSibling;
+    if (body) body.classList.toggle('hidden');
+  }
+});
+</script>
 </body>
 </html>
