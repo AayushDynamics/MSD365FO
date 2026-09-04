@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS D365 F&O — Aayush Tiwari</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-bar">
+    <a class="site-title-link" href="index.html">
+      <div class="grid-icon"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="site-title">MS D365 F&O</span>
+      <span class="site-sub">| Exploring D365 Finance and Operations</span>
+    </a>
+    <div class="spacer"></div>
+    <input class="searchbox" id="searchBox" type="text" placeholder="Search posts...">
+    <div class="icon-btn" title="Notifications">🔔</div>
+    <div class="avatar">AT</div>
+  </div>
+
+  <div class="shell">
+
+    <div class="nav-pane">
+      <div class="nav-section-label">SITE</div>
+      <div class="nav-item active" data-module="all">Home</div>
+      <a class="nav-item" href="about.html">About</a>
+      <a class="nav-item" href="contact.html">Contact</a>
+
+      <div class="nav-divider"></div>
+      <div class="nav-section-label">MODULES</div>
+      <div class="nav-item" data-module="accounts-payable"><span class="dot"></span>Accounts payable</div>
+      <div class="nav-item" data-module="accounts-receivable"><span class="dot"></span>Accounts receivable</div>
+      <div class="nav-item" data-module="budgeting"><span class="dot"></span>Budgeting</div>
+      <div class="nav-item" data-module="cash-bank"><span class="dot"></span>Cash and bank management</div>
+      <div class="nav-item" data-module="consolidations"><span class="dot"></span>Consolidations</div>
+      <div class="nav-item" data-module="cost-accounting"><span class="dot"></span>Cost accounting</div>
+      <div class="nav-item" data-module="expense-management"><span class="dot"></span>Expense management</div>
+      <div class="nav-item" data-module="fixed-assets"><span class="dot"></span>Fixed assets</div>
+      <div class="nav-item" data-module="general-ledger"><span class="dot"></span>General ledger</div>
+      <div class="nav-item" data-module="inventory-management"><span class="dot"></span>Inventory management</div>
+      <div class="nav-item" data-module="production-control"><span class="dot"></span>Production control</div>
+      <div class="nav-item" data-module="tax"><span class="dot"></span>Tax</div>
+    </div>
+
+    <div class="main">
+      <div class="breadcrumb"><a href="index.html">MS D365 F&O</a><span class="sep">›</span>Home workspace</div>
+      <h1 class="page-title">Home</h1>
+      <p class="page-subtitle">Authors: Aayush Tiwari — Exploring D365 Finance and Operations</p>
+
+      <div class="tile-row">
+        <div class="tile">
+          <div class="tile-value">4</div>
+          <div class="tile-label">Published posts</div>
+          <div class="tile-meta">Last posted Sep 1, 2026</div>
+        </div>
+        <div class="tile tile-alt">
+          <div class="tile-value">12</div>
+          <div class="tile-label">Modules covered</div>
+          <div class="tile-meta">AP · AR · GL · FA · Tax +7</div>
+        </div>
+        <div class="tile tile-amber">
+          <div class="tile-value">P2P</div>
+          <div class="tile-label">Most recent series</div>
+          <div class="tile-meta">Procure‑to‑Pay walkthrough</div>
+        </div>
+        <div class="tile tile-neutral">
+          <div class="tile-value">1</div>
+          <div class="tile-label">Author</div>
+          <div class="tile-meta">Aayush Tiwari</div>
+        </div>
+      </div>
+
+      <div class="command-bar">
+        <div class="cmd-btn"><span class="cmd-icon">＋</span><span class="cmd-label">New post</span></div>
+        <div class="cmd-sep"></div>
+        <div class="cmd-btn"><span class="cmd-icon">↻</span><span class="cmd-label">Refresh</span></div>
+        <div class="cmd-bar-right">
+          <div class="filter-chip">
+            Module:
+            <select id="moduleSelect">
+              <option value="all">All</option>
+              <option value="accounts-payable">Accounts payable</option>
+              <option value="accounts-receivable">Accounts receivable</option>
+              <option value="production-control">Production control</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-panel">
+        <table class="data-grid" id="postGrid">
+          <thead>
+            <tr>
+              <th style="width:46%">Post title</th>
+              <th>Module</th>
+              <th>Status</th>
+              <th>Published</th>
+              <th>Est. read</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-module="accounts-payable" onclick="window.location='posts/vendor-payment-proposal.html'">
+              <td class="post-title-cell">
+                <a href="posts/vendor-payment-proposal.html">Vendor Payment Proposal in D365 Finance</a>
+                <span class="post-excerpt">How the payment proposal process automates vendor invoice selection and cash flow planning in D365 F&O.</span>
+              </td>
+              <td><span class="badge">Accounts payable</span></td>
+              <td><span class="status-dot">Published</span></td>
+              <td class="col-date">Sep 1, 2026</td>
+              <td>7 min</td>
+            </tr>
+            <tr data-module="production-control" onclick="window.location='posts/rm-to-fg.html'">
+              <td class="post-title-cell">
+                <a href="posts/rm-to-fg.html">From Raw Materials to Finished Goods: A Comprehensive Journey</a>
+                <span class="post-excerpt">Production planning, execution, and costing — with the accounting entries at each step of the RM-to-FG cycle.</span>
+              </td>
+              <td><span class="badge">Production control</span></td>
+              <td><span class="status-dot">Published</span></td>
+              <td class="col-date">Aug 31, 2026</td>
+              <td>9 min</td>
+            </tr>
+            <tr data-module="accounts-receivable" onclick="window.location='posts/order-to-cash.html'">
+              <td class="post-title-cell">
+                <a href="posts/order-to-cash.html">Navigating the Order-to-Cash (O2C) Cycle</a>
+                <span class="post-excerpt">Order creation through picking, invoicing, and payment reconciliation, plus the accounting entries at each stage.</span>
+              </td>
+              <td><span class="badge">Accounts receivable</span></td>
+              <td><span class="status-dot">Published</span></td>
+              <td class="col-date">Aug 31, 2026</td>
+              <td>8 min</td>
+            </tr>
+            <tr data-module="accounts-payable" onclick="window.location='posts/procure-to-pay.html'">
+              <td class="post-title-cell">
+                <a href="posts/procure-to-pay.html">Understanding the Procure-to-Pay (P2P) Cycle</a>
+                <span class="post-excerpt">From requisition to payment execution — the full P2P journey, including three-way matching and GRNI accounting.</span>
+              </td>
+              <td><span class="badge">Accounts payable</span></td>
+              <td><span class="status-dot">Published</span></td>
+              <td class="col-date">Aug 26, 2026</td>
+              <td>10 min</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="grid-footer">
+          <span id="gridCount">4 of 4 posts</span>
+          <span>Page 1 of 1</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>

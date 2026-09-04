@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — MS D365 F&O</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-bar">
+    <a class="site-title-link" href="index.html">
+      <div class="grid-icon"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="site-title">MS D365 F&O</span>
+      <span class="site-sub">| Exploring D365 Finance and Operations</span>
+    </a>
+    <div class="spacer"></div>
+    <div class="avatar">AT</div>
+  </div>
+
+  <div class="shell">
+    <div class="nav-pane">
+      <div class="nav-section-label">SITE</div>
+      <a class="nav-item" href="index.html">Home</a>
+      <a class="nav-item" href="about.html">About</a>
+      <a class="nav-item active" href="contact.html">Contact</a>
+      <div class="nav-divider"></div>
+      <div class="nav-section-label">MODULES</div>
+      <a class="nav-item" href="index.html"><span class="dot"></span>Accounts payable</a>
+      <a class="nav-item" href="index.html"><span class="dot"></span>Accounts receivable</a>
+      <a class="nav-item" href="index.html"><span class="dot"></span>Production control</a>
+      <a class="nav-item" href="index.html"><span class="dot"></span>General ledger</a>
+    </div>
+
+    <div class="main narrow">
+      <div class="breadcrumb"><a href="index.html">MS D365 F&O</a><span class="sep">›</span>Contact</div>
+      <h1 class="page-title">Contact</h1>
+      <p class="page-subtitle">Get in touch</p>
+
+      <div class="command-bar">
+        <div class="cmd-btn"><span class="cmd-icon">✉</span><span class="cmd-label">New message</span></div>
+      </div>
+
+      <div class="form-panel">
+        <form id="contactForm">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message</button>
+          <p id="formStatus" style="margin-top:12px;font-size:12px;color:var(--text-secondary);"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
