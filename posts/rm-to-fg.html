@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>From Raw Materials to Finished Goods — MS D365 F&O</title>
+<title>From Raw Materials to Finished Goods: A Comprehensive Journey in Dynamics 365 Finance &amp; Operations! — MS D365 F&O</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -24,86 +24,70 @@
       <a class="nav-item" href="../index.html">Home</a>
       <a class="nav-item" href="../about.html">About</a>
       <a class="nav-item" href="../contact.html">Contact</a>
+      <div class="nav-divider"></div>
+      <div class="nav-section-label">ON THIS PAGE</div>
+      <div class="post-toc" id="postToc">
+<div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#post" data-tab-index="0">Post</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#1-production-planning" data-tab-index="1">1. Production Planning</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#2-production-execution" data-tab-index="2">2. Production Execution</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#3-report-production-output" data-tab-index="3">3. Report production output</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#4-quality-control" data-tab-index="4">4.Quality Control</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#5-completion-and-costing" data-tab-index="5">5. Completion and Costing</a></div>
+      </div>
     </div>
 
     <div class="main narrow">
       <div class="breadcrumb">
         <a href="../index.html">MS D365 F&O</a><span class="sep">›</span>
         <a href="../index.html">Production control</a><span class="sep">›</span>
-        RM to FG
+        From Raw Materials to Finished Goods: A Comprehensive Journey in Dynamics 365 Finance &amp; Operations!
       </div>
 
       <div class="command-bar">
         <a class="cmd-btn" href="../index.html" style="text-decoration:none;"><span class="cmd-icon">←</span><span class="cmd-label">Back</span></a>
-        <div class="cmd-sep"></div>
-        <div class="cmd-btn"><span class="cmd-icon">↗</span><span class="cmd-label">Share</span></div>
       </div>
 
       <div class="post-header">
-        <h1 class="post-title">From Raw Materials to Finished Goods: A Comprehensive Journey in D365 F&O</h1>
+        <h1 class="post-title">From Raw Materials to Finished Goods: A Comprehensive Journey in Dynamics 365 Finance &amp; Operations!</h1>
         <div class="post-meta">
           <span class="badge">Production control</span>
           <span class="status-dot">Published</span>
           <span>Aug 31, 2026</span>
           <span>Aayush Tiwari</span>
-          <span>9 min read</span>
+          <span>9 min</span>
         </div>
       </div>
 
       <div class="fasttabs attached">
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Overview</div>
+        <div class="fasttab" id="post">
+          <div class="fasttab-header"><span class="chevron">▾</span>Post</div>
           <div class="fasttab-body">
-            <p>In every manufacturing process, the transition from raw materials to finished goods involves critical stages, each contributing to operational and financial success. Here's a breakdown of the key events in this cycle and the corresponding accounting entries in D365 F&O.</p>
+            <p>In every manufacturing process, the transition from raw materials to finished goods involves critical stages, each contributing to operational and financial success. Here’s a breakdown of the key events in this cycle and the corresponding accounting entries in Dynamics 365 Finance &amp; Operations (D365 F&amp;O):<br></p><p><img alt="RM TO FG FLOW" src="../images/RM TO FG/image1.png"></p>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>1. Production planning</div>
+        <div class="fasttab" id="1-production-planning">
+          <div class="fasttab-header"><span class="chevron">▾</span>1. Production Planning</div>
           <div class="fasttab-body">
-            <p>This stage sets the foundation for efficient resource allocation and scheduling: demand forecasting from historical data, Master Planning (MRP) to generate planned orders, and production order creation defining the BOM and routing. No financial entries post here, but these activities are vital for material reservation and readiness.</p>
+            <p><br>This stage sets the foundation for efficient resource allocation and scheduling:</p><p>Demand Forecasting: Analyse historical data to predict needs.</p><ul><li>Master Planning (MRP): Generate planned orders for raw materials and production.</li><li>Production Order Creation: Define the Bill of Materials (BOM) and routing.</li></ul><p>No financial entries are posted here, but these activities are vital for material reservation and readiness.</p>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>2. Production execution</div>
+        <div class="fasttab" id="2-production-execution">
+          <div class="fasttab-header"><span class="chevron">▾</span>2. Production Execution</div>
           <div class="fasttab-body">
-            <p>Raw material and packing material picking list posting reserves and issues materials to production:</p>
-            <p><strong>Accounting:</strong> Work In Progress (Estimated) — Dr. &nbsp;|&nbsp; Raw Material Inventory (Estimated) — Cr. &nbsp;|&nbsp; Packing Material Inventory (Estimated) — Cr.</p>
-            <p>Job/route card posting tracks labor hours, machine usage, and overhead costs:</p>
-            <p><strong>Accounting:</strong> Work In Progress (Estimated) — Dr. &nbsp;|&nbsp; Labor/Machine Costs (Estimated) — Cr.</p>
+            <p><br>This stage converts planned activities into actionable tasks, focusing on material usage and cost recording:</p><ul><li><strong>Raw Material &amp; Packing Material Picking list posting</strong></li></ul><p>Reserve and issue raw materials to production. Consumption of ray material is done by Pick list posting:</p><ul><li><strong>Accounting</strong></li></ul><p>Work In progress (Estimated) – Dr.</p><p>Raw Material Inventory (Estimated) – Cr.</p><p>Packing Material Inventory (Estimated) – Cr.</p><ul><li><strong>Job/Route Card Posting</strong></li></ul><p>Track labour hours, machine usage, and overhead costs.</p><ul><li><strong>Accounting</strong></li></ul><p>Work In progress (Estimated) – Dr.</p><p>Labor/Machine Costs (Estimated) – Cr.</p>
           </div>
         </div>
-        <div class="fasttab">
+        <div class="fasttab" id="3-report-production-output">
           <div class="fasttab-header"><span class="chevron">▾</span>3. Report production output</div>
           <div class="fasttab-body">
-            <p>Report the completed quantity against the production order, before the quality check stage, to reflect partially or fully completed production.</p>
-            <p><strong>Report as finished — Accounting:</strong> Finished Goods estimated cost — Dr. &nbsp;|&nbsp; Work In Progress (Estimated) — Cr.</p>
+            <p><br>Report the completed quantity of production against the production order. This is done before the quality check stage to record progress and reflect partially or fully completed production:<br><br></p><ul><li><strong>Report as finished</strong></li></ul><p>Record the physical inventory of finished products.</p><ul><li><strong>Accounting</strong></li></ul><p>Finished Goods estimated cost- Dr.</p><p>Work In progress (Estimated) – Cr.</p>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>4. Quality control</div>
+        <div class="fasttab" id="4-quality-control">
+          <div class="fasttab-header"><span class="chevron">▾</span>4.Quality Control</div>
           <div class="fasttab-body">
-            <p>In-process inspections test WIP inventory during production; finished goods quality checks happen before adding to inventory. No direct financial entries here, but this step is key to maintaining quality and reducing wastage.</p>
+            <p><br>A stage focused on ensuring standards, without direct financial impacts. Quality assurance ensures that intermediate and finished goods meet predefined standards:</p><p>In-Process Inspections: Test WIP inventory to ensure quality during production.</p><p>Finished Goods Quality Check: Inspect products before adding to inventory.</p><p>No direct financial entries, but this step is key to maintaining quality and reducing wastage.</p>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>5. Completion and costing</div>
+        <div class="fasttab" id="5-completion-and-costing">
+          <div class="fasttab-header"><span class="chevron">▾</span>5. Completion and Costing</div>
           <div class="fasttab-body">
-            <p>Production order ending marks the order as ended, transferring estimated cost to actual financial costs from WIP to finished goods.</p>
-            <p><strong>Accounting (reversal of picking list, route cards & report-as-finished entries):</strong></p>
-            <ul>
-              <li>Raw Material Inventory — Cr.</li>
-              <li>Packing Material Inventory — Cr.</li>
-              <li>Labor/Machine Costs (Estimated) — Cr.</li>
-              <li>Work In Progress — Dr. and Cr.</li>
-              <li>Finished Goods Inventory — Dr.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Related posts</div>
-          <div class="fasttab-body">
-            <p><a href="order-to-cash.html">Navigating the Order-to-Cash (O2C) Cycle in D365 F&O</a></p>
-            <p><a href="procure-to-pay.html">Understanding the Procure-to-Pay (P2P) Cycle in D365 F&O</a></p>
+            <p><br>Finalize production by realizing actual finished goods inventory:<br></p><ul><li><strong>Production Order Ending: </strong></li></ul><p>Mark the production order as ended, transferring estimated cost to actual financial costs from WIP to finished goods. Financial inventory of finished goods are recorded at this state of production order.<br></p><ul><li><strong>Accounting</strong></li></ul><p>Reversal of Picking list, Route Cads &amp; Report as finished Accounting</p><p>Raw Material Inventory – Cr.</p><p>Packing Material Inventory – Cr.</p><p>Labor/Machine Costs (Estimated) – Cr.</p><p>Work In progress – Dr.</p><p>Work In progress – Cr.</p><p>Finished Goods Inventory – Dr.</p><p>Each step plays a vital role in ensuring seamless operations and accurate financial reporting. Understanding the financial impact of these events can help manufacturers maximize efficiency and maintain compliance. </p>
           </div>
         </div>
       </div>
@@ -111,5 +95,40 @@
   </div>
 
 <script src="../script.js"></script>
+<script>
+(function(){
+  document.querySelectorAll(".post-toc .toc-item").forEach(function(link){
+    link.addEventListener("click", function(e){
+      e.preventDefault();
+      var targetId = this.getAttribute("href").slice(1);
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      var tab = target.closest(".fasttab");
+      if (tab) {
+        var header = tab.querySelector(".fasttab-header");
+        var body = tab.querySelector(".fasttab-body");
+        if (header && body && body.classList.contains("hidden")) {
+          header.classList.remove("collapsed");
+          body.classList.remove("hidden");
+        }
+      }
+      document.querySelectorAll(".post-toc .toc-item").forEach(function(l){ l.classList.remove("active"); });
+      this.classList.add("active");
+      setTimeout(function(){ target.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
+    });
+  });
+  document.querySelectorAll(".post-toc .toc-chevron[data-toc-toggle]").forEach(function(chevron){
+    chevron.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var id = this.getAttribute("data-toc-toggle");
+      var children = document.getElementById("tocChildren-" + id);
+      var row = this.closest(".toc-h1-row");
+      if (children) children.classList.toggle("collapsed");
+      if (row) row.classList.toggle("collapsed");
+    });
+  });
+})();
+</script>
 </body>
 </html>
