@@ -35,7 +35,7 @@ a:hover{text-decoration:underline;}
 
 .shell{display:flex;min-height:calc(100vh - 44px);}
 
-.nav-pane{width:250px;flex-shrink:0;background:var(--bg-panel);border-right:1px solid var(--border);padding:10px 0;overflow-y:auto;}
+.nav-pane{width:250px;flex-shrink:0;background:var(--bg-panel);border-right:1px solid var(--border);padding:10px 0;overflow-y:auto;position:sticky;top:44px;max-height:calc(100vh - 44px);align-self:flex-start;}
 .nav-section-label{font-size:11px;color:var(--text-tertiary);padding:8px 16px 4px;font-weight:600;}
 .nav-item{display:flex;align-items:center;gap:10px;padding:7px 16px;color:var(--text);cursor:pointer;border-left:3px solid transparent;font-size:13px;}
 .nav-item:hover{background:var(--bg-workspace);text-decoration:none;}
@@ -46,6 +46,23 @@ a:hover{text-decoration:underline;}
 
 /* Word-style table of contents / navigation pane on post pages */
 .post-toc{padding:2px 0;}
+
+.toc-h1-row{display:flex;align-items:stretch;}
+.toc-h1-row .toc-chevron{
+  display:flex;align-items:center;justify-content:center;
+  width:26px;flex-shrink:0;
+  cursor:pointer;
+  color:var(--text-secondary);
+  font-size:10px;
+  transition:transform .12s;
+}
+.toc-h1-row .toc-chevron:hover{color:var(--text);}
+.toc-h1-row.collapsed .toc-chevron{transform:rotate(-90deg);}
+.toc-h1-row .toc-item.toc-level-1{flex:1;padding-left:0;}
+
+.toc-children{display:block;}
+.toc-children.collapsed{display:none;}
+
 .toc-item{
   display:block;
   padding:6px 16px;
