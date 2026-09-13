@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigating the Order-to-Cash (O2C) Cycle — MS D365 F&O</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="app-bar">
+    <a class="site-title-link" href="../index.html">
+      <div class="grid-icon"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="site-title">MS D365 F&O</span>
+      <span class="site-sub">| Exploring D365 Finance and Operations</span>
+    </a>
+    <div class="spacer"></div>
+    <div class="avatar">AT</div>
+  </div>
+
+  <div class="shell">
+    <div class="nav-pane">
+      <div class="nav-section-label">SITE</div>
+      <a class="nav-item" href="../index.html">Home</a>
+      <a class="nav-item" href="../about.html">About</a>
+      <a class="nav-item" href="../contact.html">Contact</a>
+    </div>
+
+    <div class="main narrow">
+      <div class="breadcrumb">
+        <a href="../index.html">MS D365 F&O</a><span class="sep">›</span>
+        <a href="../index.html">Accounts receivable</a><span class="sep">›</span>
+        Order-to-Cash
+      </div>
+
+      <div class="command-bar">
+        <a class="cmd-btn" href="../index.html" style="text-decoration:none;"><span class="cmd-icon">←</span><span class="cmd-label">Back</span></a>
+        <div class="cmd-sep"></div>
+        <div class="cmd-btn"><span class="cmd-icon">↗</span><span class="cmd-label">Share</span></div>
+      </div>
+
+      <div class="post-header">
+        <h1 class="post-title">Navigating the Order-to-Cash (O2C) Cycle in D365 F&O</h1>
+        <div class="post-meta">
+          <span class="badge">Accounts receivable</span>
+          <span class="status-dot">Published</span>
+          <span>Aug 31, 2026</span>
+          <span>Aayush Tiwari</span>
+          <span>8 min read</span>
+        </div>
+      </div>
+
+      <div class="fasttabs attached">
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Overview</div>
+          <div class="fasttab-body">
+            <p>The O2C cycle is a fundamental process in any organization, ensuring smooth operations from order placement to cash receipt. Here's a detailed breakdown of the key events and associated accounting entries in D365 F&O.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Order creation to inventory allocation</div>
+          <div class="fasttab-body">
+            <ul>
+              <li>Create and validate a sales order based on customer requirements</li>
+              <li>Confirm the sales order with the customer</li>
+              <li>Allocate inventory for the confirmed sales order — a physical reservation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Picking, packing & invoicing</div>
+          <div class="fasttab-body">
+            <p>Pick items from inventory and pack for shipment. Optional accounting entries: Debit Cost of Goods Sold (delivered), Credit Inventory, Credit Deferred revenue on delivery, Debit Deferred revenue offset on delivery. Inventory movement is recorded using the moving average cost method.</p>
+            <p>Invoice generation calculates taxes and reverses the picking/packing entries:</p>
+            <ul>
+              <li>Debit: Accounts Receivable (total invoice amount)</li>
+              <li>Credit: Sales Revenue (net sales amount)</li>
+              <li>Credit: Tax Payables</li>
+              <li>Debit: Cost of Goods Sold</li>
+              <li>Credit: Inventory</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Shipping through payment reconciliation</div>
+          <div class="fasttab-body">
+            <p>Ship the packed items and confirm delivery with the customer. On payment processing:</p>
+            <ul>
+              <li>Debit: Cash/Bank Account</li>
+              <li>Credit: Accounts Receivable</li>
+            </ul>
+            <p>Payments are then reconciled against outstanding invoices, and receivables aging is tracked.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Reporting & period close</div>
+          <div class="fasttab-body">
+            <p>Generate reports on sales, invoices, and receivables, then finalize financial records by closing the accounting period. These accounting principles remain consistent across different ERP software.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Related posts</div>
+          <div class="fasttab-body">
+            <p><a href="procure-to-pay.html">Understanding the Procure-to-Pay (P2P) Cycle in D365 F&O</a></p>
+            <p><a href="rm-to-fg.html">From Raw Materials to Finished Goods in D365 F&O</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../script.js"></script>
+</body>
+</html>

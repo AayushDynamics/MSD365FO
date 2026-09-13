@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding the Procure-to-Pay (P2P) Cycle — MS D365 F&O</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="app-bar">
+    <a class="site-title-link" href="../index.html">
+      <div class="grid-icon"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="site-title">MS D365 F&O</span>
+      <span class="site-sub">| Exploring D365 Finance and Operations</span>
+    </a>
+    <div class="spacer"></div>
+    <div class="avatar">AT</div>
+  </div>
+
+  <div class="shell">
+    <div class="nav-pane">
+      <div class="nav-section-label">SITE</div>
+      <a class="nav-item" href="../index.html">Home</a>
+      <a class="nav-item" href="../about.html">About</a>
+      <a class="nav-item" href="../contact.html">Contact</a>
+    </div>
+
+    <div class="main narrow">
+      <div class="breadcrumb">
+        <a href="../index.html">MS D365 F&O</a><span class="sep">›</span>
+        <a href="../index.html">Accounts payable</a><span class="sep">›</span>
+        Procure-to-Pay
+      </div>
+
+      <div class="command-bar">
+        <a class="cmd-btn" href="../index.html" style="text-decoration:none;"><span class="cmd-icon">←</span><span class="cmd-label">Back</span></a>
+        <div class="cmd-sep"></div>
+        <div class="cmd-btn"><span class="cmd-icon">↗</span><span class="cmd-label">Share</span></div>
+      </div>
+
+      <div class="post-header">
+        <h1 class="post-title">Understanding the Procure-to-Pay (P2P) Cycle in D365 F&O</h1>
+        <div class="post-meta">
+          <span class="badge">Accounts payable</span>
+          <span class="status-dot">Published</span>
+          <span>Aug 26, 2026</span>
+          <span>Aayush Tiwari</span>
+          <span>10 min read</span>
+        </div>
+      </div>
+
+      <div class="fasttabs attached">
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Overview</div>
+          <div class="fasttab-body">
+            <p>The P2P cycle is a crucial process in any organization, ensuring smooth operations from procurement to payment. Here's a breakdown of the key events and associated accounting entries in D365 F&O.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Requisition through purchase order</div>
+          <div class="fasttab-body">
+            <ul>
+              <li>Create and submit a purchase requisition for approval</li>
+              <li>Approve the requisition and convert it to a purchase order</li>
+              <li>Request vendor quotations where no active trade agreement exists, then compare and approve</li>
+              <li>Create and validate the purchase order, submitting for approval if required</li>
+              <li>Approve the PO and confirm it to the vendor, then receive vendor acknowledgment</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Receipt of goods or services</div>
+          <div class="fasttab-body">
+            <p>Record the receipt of goods or services via a product receipt.</p>
+            <p><strong>Accounting:</strong> Debit Un-invoiced Inventory / Un-invoiced Expense Account &nbsp;|&nbsp; Credit Accrued Liabilities / GRNI (Goods Received Not Invoiced) Account.</p>
+            <p>Physical movement details — physical voucher, physical date, physical cost of inventory — are recorded at this stage.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Invoice processing & approval</div>
+          <div class="fasttab-body">
+            <p>Receive and enter the vendor invoice, performing three-way matching between the purchase order, product receipt, and vendor invoice. Submit for approval.</p>
+            <p><strong>Accounting</strong> (reversal of the GRN entry):</p>
+            <ul>
+              <li>Debit: Invoiced Inventory / Invoiced Expense Account</li>
+              <li>Debit: Input Taxes</li>
+              <li>Credit: Accounts Payable</li>
+            </ul>
+            <p>Financial movement details — financial voucher, financial date, financial cost of inventory — are recorded here.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Payment processing & execution</div>
+          <div class="fasttab-body">
+            <p>Schedule the payment, generate and validate the payment proposal, then execute payment via the chosen method.</p>
+            <p><strong>Accounting:</strong> Debit Accounts Payable &nbsp;|&nbsp; Credit Cash/Bank Account.</p>
+            <p>Finally, reconcile bank statements with recorded payments, generate reports on procurement and payment activities, and close the accounting period.</p>
+          </div>
+        </div>
+        <div class="fasttab">
+          <div class="fasttab-header"><span class="chevron">▾</span>Related posts</div>
+          <div class="fasttab-body">
+            <p><a href="vendor-payment-proposal.html">Vendor Payment Proposal in D365 Finance</a></p>
+            <p><a href="order-to-cash.html">Navigating the Order-to-Cash (O2C) Cycle in D365 F&O</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../script.js"></script>
+</body>
+</html>
