@@ -144,8 +144,13 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
 .fasttab-body{padding:14px 16px 18px;font-size:13.5px;color:var(--text);line-height:1.7;}
 .fasttab-body.hidden{display:none;}
 .fasttab-body p{margin:0 0 12px;}
+.fasttab-body h2{font-size:15px;font-weight:600;margin:18px 0 8px;color:var(--text);}
+.fasttab-body h2:first-child{margin-top:0;}
+.fasttab-body h3{font-size:13.5px;font-weight:600;margin:14px 0 6px;color:var(--text-secondary);}
+.fasttab-body h3:first-child{margin-top:0;}
 .fasttab-body ul{margin:0 0 12px;padding-left:20px;}
 .fasttab-body li{margin-bottom:4px;}
+.fasttab-body img{max-width:100%;height:auto;display:block;margin:12px 0;border:1px solid var(--border);}
 
 .post-header{background:var(--bg-panel);border:1px solid var(--border);border-top:none;padding:20px 22px 16px;}
 .post-title{font-size:22px;font-weight:600;margin:0 0 8px;line-height:1.3;}
