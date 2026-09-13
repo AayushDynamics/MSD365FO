@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Understanding the Procure-to-Pay (P2P) Cycle — MS D365 F&O</title>
+<title>Understanding the Procure-to-Pay (P2P) Cycle in Dynamics 365 Finance and Operations (D365 F&amp;O) — MS D365 F&O</title>
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -24,85 +24,106 @@
       <a class="nav-item" href="../index.html">Home</a>
       <a class="nav-item" href="../about.html">About</a>
       <a class="nav-item" href="../contact.html">Contact</a>
+      <div class="nav-divider"></div>
+      <div class="nav-section-label">ON THIS PAGE</div>
+      <div class="post-toc" id="postToc">
+<div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#post" data-tab-index="0">Post</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#1-requisition-creation" data-tab-index="1">1. Requisition Creation:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#2-approval-workflow" data-tab-index="2">2. Approval Workflow:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#3-request-for-quotation" data-tab-index="3">3. Request for Quotation</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#4-purchase-order-creation" data-tab-index="4">4. Purchase Order Creation:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#5-purchase-order-approval" data-tab-index="5">5. Purchase Order Approval:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#6-vendor-acknowledgment" data-tab-index="6">6. Vendor Acknowledgment:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#7-receipt-of-goods-or-services" data-tab-index="7">7. Receipt of Goods or Services:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#8-invoice-processing" data-tab-index="8">8. Invoice Processing:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#9-invoice-approval" data-tab-index="9">9. Invoice Approval:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#10-payment-processing" data-tab-index="10">10. Payment Processing:</a></div><div class="toc-h1-row"><span class="toc-chevron" style="visibility:hidden;">▾</span><a class="toc-item toc-level-1" href="#11-reconciliation-and-reporting" data-tab-index="11">11. Reconciliation and Reporting:</a></div>
+      </div>
     </div>
 
     <div class="main narrow">
       <div class="breadcrumb">
         <a href="../index.html">MS D365 F&O</a><span class="sep">›</span>
         <a href="../index.html">Accounts payable</a><span class="sep">›</span>
-        Procure-to-Pay
+        Understanding the Procure-to-Pay (P2P) Cycle in Dynamics 365 Finance and Operations (D365 F&amp;O)
       </div>
 
       <div class="command-bar">
         <a class="cmd-btn" href="../index.html" style="text-decoration:none;"><span class="cmd-icon">←</span><span class="cmd-label">Back</span></a>
-        <div class="cmd-sep"></div>
-        <div class="cmd-btn"><span class="cmd-icon">↗</span><span class="cmd-label">Share</span></div>
       </div>
 
       <div class="post-header">
-        <h1 class="post-title">Understanding the Procure-to-Pay (P2P) Cycle in D365 F&O</h1>
+        <h1 class="post-title">Understanding the Procure-to-Pay (P2P) Cycle in Dynamics 365 Finance and Operations (D365 F&amp;O)</h1>
         <div class="post-meta">
           <span class="badge">Accounts payable</span>
           <span class="status-dot">Published</span>
           <span>Aug 26, 2026</span>
           <span>Aayush Tiwari</span>
-          <span>10 min read</span>
+          <span>10 min</span>
         </div>
       </div>
 
       <div class="fasttabs attached">
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Overview</div>
+        <div class="fasttab" id="post">
+          <div class="fasttab-header"><span class="chevron">▾</span>Post</div>
           <div class="fasttab-body">
-            <p>The P2P cycle is a crucial process in any organization, ensuring smooth operations from procurement to payment. Here's a breakdown of the key events and associated accounting entries in D365 F&O.</p>
+            <p>The P2P cycle is a crucial process in any organization, ensuring smooth operations from procurement to payment. Here’s a breakdown of the key events and associated accounting entries in D365 F&amp;O:</p><p><img alt="P2P Flow" src="../images/understanding-the-procure-to-pay-p2p-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.jpeg"></p>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Requisition through purchase order</div>
+        <div class="fasttab" id="1-requisition-creation">
+          <div class="fasttab-header"><span class="chevron">▾</span>1. Requisition Creation:</div>
           <div class="fasttab-body">
-            <ul>
-              <li>Create and submit a purchase requisition for approval</li>
-              <li>Approve the requisition and convert it to a purchase order</li>
-              <li>Request vendor quotations where no active trade agreement exists, then compare and approve</li>
-              <li>Create and validate the purchase order, submitting for approval if required</li>
-              <li>Approve the PO and confirm it to the vendor, then receive vendor acknowledgment</li>
-            </ul>
+            <ul><li>Create a purchase requisition.</li><li>Submit the purchase requisition for approval.</li></ul>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Receipt of goods or services</div>
+        <div class="fasttab" id="2-approval-workflow">
+          <div class="fasttab-header"><span class="chevron">▾</span>2. Approval Workflow:</div>
           <div class="fasttab-body">
-            <p>Record the receipt of goods or services via a product receipt.</p>
-            <p><strong>Accounting:</strong> Debit Un-invoiced Inventory / Un-invoiced Expense Account &nbsp;|&nbsp; Credit Accrued Liabilities / GRNI (Goods Received Not Invoiced) Account.</p>
-            <p>Physical movement details — physical voucher, physical date, physical cost of inventory — are recorded at this stage.</p>
+            <ul><li>Approve the purchase requisition.</li><li>Convert the approved requisition into a purchase order.</li></ul>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Invoice processing & approval</div>
+        <div class="fasttab" id="3-request-for-quotation">
+          <div class="fasttab-header"><span class="chevron">▾</span>3. Request for Quotation</div>
           <div class="fasttab-body">
-            <p>Receive and enter the vendor invoice, performing three-way matching between the purchase order, product receipt, and vendor invoice. Submit for approval.</p>
-            <p><strong>Accounting</strong> (reversal of the GRN entry):</p>
-            <ul>
-              <li>Debit: Invoiced Inventory / Invoiced Expense Account</li>
-              <li>Debit: Input Taxes</li>
-              <li>Credit: Accounts Payable</li>
-            </ul>
-            <p>Financial movement details — financial voucher, financial date, financial cost of inventory — are recorded here.</p>
+            <ul><li>Request vendors for price quotations of the requisition (In absence of an active trade agreement).</li><li>Compare &amp; Approve received item price quotations.</li></ul>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Payment processing & execution</div>
+        <div class="fasttab" id="4-purchase-order-creation">
+          <div class="fasttab-header"><span class="chevron">▾</span>4. Purchase Order Creation:</div>
           <div class="fasttab-body">
-            <p>Schedule the payment, generate and validate the payment proposal, then execute payment via the chosen method.</p>
-            <p><strong>Accounting:</strong> Debit Accounts Payable &nbsp;|&nbsp; Credit Cash/Bank Account.</p>
-            <p>Finally, reconcile bank statements with recorded payments, generate reports on procurement and payment activities, and close the accounting period.</p>
+            <ul><li>Create a purchase order (PO) from an approved requisition.</li><li>Validate the purchase order details.</li><li>Submit the purchase order for approval if required.</li></ul>
           </div>
         </div>
-        <div class="fasttab">
-          <div class="fasttab-header"><span class="chevron">▾</span>Related posts</div>
+        <div class="fasttab" id="5-purchase-order-approval">
+          <div class="fasttab-header"><span class="chevron">▾</span>5. Purchase Order Approval:</div>
           <div class="fasttab-body">
-            <p><a href="vendor-payment-proposal.html">Vendor Payment Proposal in D365 Finance</a></p>
-            <p><a href="order-to-cash.html">Navigating the Order-to-Cash (O2C) Cycle in D365 F&O</a></p>
+            <ul><li>Approve the purchase order.</li><li>Confirm the purchase order to the vendor.</li></ul>
+          </div>
+        </div>
+        <div class="fasttab" id="6-vendor-acknowledgment">
+          <div class="fasttab-header"><span class="chevron">▾</span>6. Vendor Acknowledgment:</div>
+          <div class="fasttab-body">
+            <ul><li>Receive vendor acknowledgment of the purchase order.</li></ul>
+          </div>
+        </div>
+        <div class="fasttab" id="7-receipt-of-goods-or-services">
+          <div class="fasttab-header"><span class="chevron">▾</span>7. Receipt of Goods or Services:</div>
+          <div class="fasttab-body">
+            <ul><li>Record the receipt of goods or services (create a product receipt).<ul><li><strong>Accounting Entries:</strong></li></ul></li></ul><p>– Debit: Un-invoiced Inventory/ Un-invoiced Expense Account</p><p>– Credit: Accrued Liabilities/GRNI (Goods Received Not Invoiced) Account</p><ul><li><ul><li><strong>Physical Movement of goods :</strong></li></ul></li></ul><p>– Physical movement details like Physical Voucher, Physical Date , Physical Cost of inventory is recorded.</p>
+          </div>
+        </div>
+        <div class="fasttab" id="8-invoice-processing">
+          <div class="fasttab-header"><span class="chevron">▾</span>8. Invoice Processing:</div>
+          <div class="fasttab-body">
+            <ul><li>Receive the vendor invoice.</li><li>Enter the vendor invoice details in D365 F&amp;O.</li><li>Perform three-way matching (purchase order, product receipt, and vendor invoice).</li></ul>
+          </div>
+        </div>
+        <div class="fasttab" id="9-invoice-approval">
+          <div class="fasttab-header"><span class="chevron">▾</span>9. Invoice Approval:</div>
+          <div class="fasttab-body">
+            <ul><li>Submit the invoice for approval.</li><li>Approve the vendor invoice.<ul><li><strong>Accounting Entries:</strong></li></ul></li></ul><p>– Reversal of entry posted during GRN</p><p>– Debit: Invoiced Inventory/ Invoiced Expense Account</p><p>– Debit : Input Taxes</p><p>– Credit: Accounts Payable</p><ul><li><ul><li><strong>Financial Movement of goods :</strong></li></ul></li></ul><p>– Financial movement details like Financial Voucher, Financial Date , Financial Cost of inventory is recorded.</p>
+          </div>
+        </div>
+        <div class="fasttab" id="10-payment-processing">
+          <div class="fasttab-header"><span class="chevron">▾</span>10. Payment Processing:</div>
+          <div class="fasttab-body">
+            <ul><li>Schedule the payment to the vendor.</li><li>Generate the payment proposal.</li><li>Validate the payment proposal.</li><li>Execute the payment (issue payment to the vendor via the chosen payment method, such as electronic transfer or check).<ul><li><strong>Accounting Entries:</strong></li></ul></li></ul><p>– Debit: Accounts Payable</p><p>– Credit: Cash/Bank Account</p>
+          </div>
+        </div>
+        <div class="fasttab" id="11-reconciliation-and-reporting">
+          <div class="fasttab-header"><span class="chevron">▾</span>11. Reconciliation and Reporting:</div>
+          <div class="fasttab-body">
+            <ul><li>Reconcile bank statements with recorded payments.</li><li>Generate reports on procurement and payment activities.</li><li>Close the accounting period.<br></li></ul><p>By understanding these steps and the related accounting entries, organizations can ensure accuracy and efficiency in their financial processes.</p>
           </div>
         </div>
       </div>
@@ -110,5 +131,40 @@
   </div>
 
 <script src="../script.js"></script>
+<script>
+(function(){
+  document.querySelectorAll(".post-toc .toc-item").forEach(function(link){
+    link.addEventListener("click", function(e){
+      e.preventDefault();
+      var targetId = this.getAttribute("href").slice(1);
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      var tab = target.closest(".fasttab");
+      if (tab) {
+        var header = tab.querySelector(".fasttab-header");
+        var body = tab.querySelector(".fasttab-body");
+        if (header && body && body.classList.contains("hidden")) {
+          header.classList.remove("collapsed");
+          body.classList.remove("hidden");
+        }
+      }
+      document.querySelectorAll(".post-toc .toc-item").forEach(function(l){ l.classList.remove("active"); });
+      this.classList.add("active");
+      setTimeout(function(){ target.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
+    });
+  });
+  document.querySelectorAll(".post-toc .toc-chevron[data-toc-toggle]").forEach(function(chevron){
+    chevron.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var id = this.getAttribute("data-toc-toggle");
+      var children = document.getElementById("tocChildren-" + id);
+      var row = this.closest(".toc-h1-row");
+      if (children) children.classList.toggle("collapsed");
+      if (row) row.classList.toggle("collapsed");
+    });
+  });
+})();
+</script>
 </body>
 </html>
