@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Navigating the Order-to-Cash (O2C) Cycle in Dynamics 365 Finance and Operations (D365 F&amp;O) — MS D365 F&O</title>
+<meta name="description" content="Order creation through picking, invoicing, and payment reconciliation, plus the accounting entries at each stage.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MS D365 F&amp;O">
+<meta property="og:title" content="Navigating the Order-to-Cash (O2C) Cycle">
+<meta property="og:description" content="Order creation through picking, invoicing, and payment reconciliation, plus the accounting entries at each stage.">
+<meta property="og:url" content="https://aayushdynamics.github.io/MSD365FO/posts/order-to-cash.html">
+<meta property="og:image" content="https://aayushdynamics.github.io/MSD365FO/images/navigating-the-order-to-cash-o2c-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -60,7 +69,7 @@
         <div class="fasttab" id="post">
           <div class="fasttab-header"><span class="chevron">▾</span>Post</div>
           <div class="fasttab-body">
-            <p>The O2C cycle is a fundamental process in any organization, ensuring smooth operations from order placement to cash receipt. Here’s a detailed breakdown of the key events and associated accounting entries in D365 F&amp;O:</p><p><img alt="O2C Flow" src="../images/navigating-the-order-to-cash-o2c-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.png"></p>
+            <p>The O2C cycle is a fundamental process in any organization, ensuring smooth operations from order placement to cash receipt. Here’s a detailed breakdown of the key events and associated accounting entries in D365 F&amp;O:</p><p><img alt="O2C Flow" src="../images/navigating-the-order-to-cash-o2c-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.png" loading="lazy" decoding="async"></p>
           </div>
         </div>
         <div class="fasttab" id="1-order-creation-confirmation">
@@ -110,40 +119,5 @@
   </div>
 
 <script src="../script.js"></script>
-<script>
-(function(){
-  document.querySelectorAll(".post-toc .toc-item").forEach(function(link){
-    link.addEventListener("click", function(e){
-      e.preventDefault();
-      var targetId = this.getAttribute("href").slice(1);
-      var target = document.getElementById(targetId);
-      if (!target) return;
-      var tab = target.closest(".fasttab");
-      if (tab) {
-        var header = tab.querySelector(".fasttab-header");
-        var body = tab.querySelector(".fasttab-body");
-        if (header && body && body.classList.contains("hidden")) {
-          header.classList.remove("collapsed");
-          body.classList.remove("hidden");
-        }
-      }
-      document.querySelectorAll(".post-toc .toc-item").forEach(function(l){ l.classList.remove("active"); });
-      this.classList.add("active");
-      setTimeout(function(){ target.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
-    });
-  });
-  document.querySelectorAll(".post-toc .toc-chevron[data-toc-toggle]").forEach(function(chevron){
-    chevron.addEventListener("click", function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      var id = this.getAttribute("data-toc-toggle");
-      var children = document.getElementById("tocChildren-" + id);
-      var row = this.closest(".toc-h1-row");
-      if (children) children.classList.toggle("collapsed");
-      if (row) row.classList.toggle("collapsed");
-    });
-  });
-})();
-</script>
 </body>
 </html>

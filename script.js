@@ -5,6 +5,7 @@ document.addEventListener('click', function(e){
     header.classList.toggle('collapsed');
     const body = header.nextElementSibling;
     if(body) body.classList.toggle('hidden');
+    header.setAttribute('aria-expanded', header.classList.contains('collapsed') ? 'false' : 'true');
   }
 });
 
@@ -177,6 +178,71 @@ document.addEventListener('DOMContentLoaded', function(){
 
   window.addEventListener('resize', function(){
     if(window.innerWidth > 900) setOpen(false);
+  });
+});
+
+// ===== Post pages: TOC navigation + keyboard access =====
+// Previously duplicated inline in every post page; centralised here so all
+// posts share one copy.
+document.addEventListener('DOMContentLoaded', function(){
+  const toc = document.getElementById('postToc');
+
+  if(toc){
+    toc.querySelectorAll('.toc-item').forEach(function(link){
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if(!target) return;
+        const tab = target.closest('.fasttab');
+        if(tab){
+          const header = tab.querySelector('.fasttab-header');
+          const body = tab.querySelector('.fasttab-body');
+          if(header && body && body.classList.contains('hidden')){
+            header.classList.remove('collapsed');
+            body.classList.remove('hidden');
+            header.setAttribute('aria-expanded', 'true');
+          }
+        }
+        toc.querySelectorAll('.toc-item').forEach(function(l){ l.classList.remove('active'); });
+        this.classList.add('active');
+        setTimeout(function(){ target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
+      });
+    });
+
+    toc.querySelectorAll('.toc-chevron[data-toc-toggle]').forEach(function(chevron){
+      chevron.setAttribute('role', 'button');
+      chevron.setAttribute('tabindex', '0');
+      chevron.setAttribute('aria-label', 'Toggle section');
+      function toggle(e){
+        e.preventDefault();
+        e.stopPropagation();
+        const children = document.getElementById('tocChildren-' + chevron.getAttribute('data-toc-toggle'));
+        const row = chevron.closest('.toc-h1-row');
+        if(children) children.classList.toggle('collapsed');
+        if(row) row.classList.toggle('collapsed');
+        chevron.setAttribute('aria-expanded', row && row.classList.contains('collapsed') ? 'false' : 'true');
+      }
+      chevron.addEventListener('click', toggle);
+      chevron.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' ') toggle(e);
+      });
+      chevron.setAttribute('aria-expanded', 'true');
+    });
+  }
+
+  // FastTab headers are divs; make them reachable and operable by keyboard
+  document.querySelectorAll('.fasttab-header').forEach(function(header){
+    header.setAttribute('role', 'button');
+    header.setAttribute('tabindex', '0');
+    const body = header.nextElementSibling;
+    header.setAttribute('aria-expanded', body && body.classList.contains('hidden') ? 'false' : 'true');
+    header.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        header.click();
+      }
+    });
   });
 });
 

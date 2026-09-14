@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Understanding the Procure-to-Pay (P2P) Cycle in Dynamics 365 Finance and Operations (D365 F&amp;O) — MS D365 F&O</title>
+<meta name="description" content="From requisition to payment execution, the full P2P journey, including three-way matching and GRNI accounting.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MS D365 F&amp;O">
+<meta property="og:title" content="Understanding the Procure-to-Pay (P2P) Cycle">
+<meta property="og:description" content="From requisition to payment execution, the full P2P journey, including three-way matching and GRNI accounting.">
+<meta property="og:url" content="https://aayushdynamics.github.io/MSD365FO/posts/procure-to-pay.html">
+<meta property="og:image" content="https://aayushdynamics.github.io/MSD365FO/images/understanding-the-procure-to-pay-p2p-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -59,7 +68,7 @@
         <div class="fasttab" id="post">
           <div class="fasttab-header"><span class="chevron">▾</span>Post</div>
           <div class="fasttab-body">
-            <p>The P2P cycle is a crucial process in any organization, ensuring smooth operations from procurement to payment. Here’s a breakdown of the key events and associated accounting entries in D365 F&amp;O:</p><p><img alt="P2P Flow" src="../images/understanding-the-procure-to-pay-p2p-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.jpeg"></p>
+            <p>The P2P cycle is a crucial process in any organization, ensuring smooth operations from procurement to payment. Here’s a breakdown of the key events and associated accounting entries in D365 F&amp;O:</p><p><img alt="P2P Flow" src="../images/understanding-the-procure-to-pay-p2p-cycle-in-dynamics-365-finance-and-operations-d365-f-o/image1.jpeg" loading="lazy" decoding="async"></p>
           </div>
         </div>
         <div class="fasttab" id="1-requisition-creation">
@@ -133,40 +142,5 @@
   </div>
 
 <script src="../script.js"></script>
-<script>
-(function(){
-  document.querySelectorAll(".post-toc .toc-item").forEach(function(link){
-    link.addEventListener("click", function(e){
-      e.preventDefault();
-      var targetId = this.getAttribute("href").slice(1);
-      var target = document.getElementById(targetId);
-      if (!target) return;
-      var tab = target.closest(".fasttab");
-      if (tab) {
-        var header = tab.querySelector(".fasttab-header");
-        var body = tab.querySelector(".fasttab-body");
-        if (header && body && body.classList.contains("hidden")) {
-          header.classList.remove("collapsed");
-          body.classList.remove("hidden");
-        }
-      }
-      document.querySelectorAll(".post-toc .toc-item").forEach(function(l){ l.classList.remove("active"); });
-      this.classList.add("active");
-      setTimeout(function(){ target.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
-    });
-  });
-  document.querySelectorAll(".post-toc .toc-chevron[data-toc-toggle]").forEach(function(chevron){
-    chevron.addEventListener("click", function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      var id = this.getAttribute("data-toc-toggle");
-      var children = document.getElementById("tocChildren-" + id);
-      var row = this.closest(".toc-h1-row");
-      if (children) children.classList.toggle("collapsed");
-      if (row) row.classList.toggle("collapsed");
-    });
-  });
-})();
-</script>
 </body>
 </html>

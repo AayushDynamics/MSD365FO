@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vendor Payment Proposal in D365 Finance — MS D365 F&O</title>
+<meta name="description" content="How the payment proposal process automates vendor invoice selection and cash flow planning in D365 F&amp;O.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MS D365 F&amp;O">
+<meta property="og:title" content="Vendor Payment Proposal in D365 Finance">
+<meta property="og:description" content="How the payment proposal process automates vendor invoice selection and cash flow planning in D365 F&amp;O.">
+<meta property="og:url" content="https://aayushdynamics.github.io/MSD365FO/posts/vendor-payment-proposal.html">
+<meta property="og:image" content="https://aayushdynamics.github.io/MSD365FO/images/vendor-payment-proposal-in-d365-finance/image1.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -60,7 +69,7 @@
         <div class="fasttab" id="vendor-payment-proposal-in-d365-finance">
           <div class="fasttab-header"><span class="chevron">▾</span>Vendor Payment Proposal in D365 Finance</div>
           <div class="fasttab-body">
-            <p>One of the most underrated yet powerful tools I’ve seen in <strong>Dynamics 365 Finance &amp; Operations</strong> is the <strong>Vendor Payment Proposal</strong> process.</p><p>For anyone who has worked in <strong>Accounts Payable</strong>, managing vendor payments can often feel like juggling due dates, discounts, payment methods, and approval timelines — all while ensuring compliance and accuracy. That’s where the <em>payment proposal</em> feature steps in as a game-changer.</p><p><img alt="Vendor Payment Proposal" src="../images/vendor-payment-proposal-in-d365-finance/image1.png"></p>
+            <p>One of the most underrated yet powerful tools I’ve seen in <strong>Dynamics 365 Finance &amp; Operations</strong> is the <strong>Vendor Payment Proposal</strong> process.</p><p>For anyone who has worked in <strong>Accounts Payable</strong>, managing vendor payments can often feel like juggling due dates, discounts, payment methods, and approval timelines — all while ensuring compliance and accuracy. That’s where the <em>payment proposal</em> feature steps in as a game-changer.</p><p><img alt="Vendor Payment Proposal" src="../images/vendor-payment-proposal-in-d365-finance/image1.png" loading="lazy" decoding="async"></p>
           </div>
         </div>
         <div class="fasttab" id="what-is-a-vendor-payment-proposal">
@@ -72,7 +81,7 @@
         <div class="fasttab" id="how-it-works-in-d365-f-o">
           <div class="fasttab-header"><span class="chevron">▾</span>How it Works in D365 F&amp;O</div>
           <div class="fasttab-body">
-            <ul><li>Navigate to: <strong>Accounts Payable &gt; Payments &gt; Vendor payment journal</strong></li><li>Create a new journal or select an existing one &amp; go to lines.</li></ul><p><img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image2.png">Create vendor payment journal</p><ul><li>Click <strong>Payment proposal → Create payment proposal</strong></li></ul><p><img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image3.png">Create vendor payment proposal</p><ul><li>Define your filters (e.g., all invoices due before the 10th of the month, or eligible for early payment discounts)</li></ul><p><img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image4.png">Parameters of vendor payment proposal<img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image5.png">Records to include of vendor payment proposal.<img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image6.png">Advance parameters of vendor payment proposal</p><ul><li>Review the proposed list, make adjustments if needed</li><li>Generate payments — via bank file, check, or any other configured method</li></ul><p>The system ensures invoices are settled automatically once payments are posted — streamlining your entire pay-run process.</p>
+            <ul><li>Navigate to: <strong>Accounts Payable &gt; Payments &gt; Vendor payment journal</strong></li><li>Create a new journal or select an existing one &amp; go to lines.</li></ul><p><img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image2.png" loading="lazy" decoding="async">Create vendor payment journal</p><ul><li>Click <strong>Payment proposal → Create payment proposal</strong></li></ul><p><img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image3.png" loading="lazy" decoding="async">Create vendor payment proposal</p><ul><li>Define your filters (e.g., all invoices due before the 10th of the month, or eligible for early payment discounts)</li></ul><p><img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image4.png" loading="lazy" decoding="async">Parameters of vendor payment proposal<img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image5.png" loading="lazy" decoding="async">Records to include of vendor payment proposal.<img alt="Article content" src="../images/vendor-payment-proposal-in-d365-finance/image6.png" loading="lazy" decoding="async">Advance parameters of vendor payment proposal</p><ul><li>Review the proposed list, make adjustments if needed</li><li>Generate payments — via bank file, check, or any other configured method</li></ul><p>The system ensures invoices are settled automatically once payments are posted — streamlining your entire pay-run process.</p>
           </div>
         </div>
         <div class="fasttab" id="real-world-benefits">
@@ -104,40 +113,5 @@
   </div>
 
 <script src="../script.js"></script>
-<script>
-(function(){
-  document.querySelectorAll(".post-toc .toc-item").forEach(function(link){
-    link.addEventListener("click", function(e){
-      e.preventDefault();
-      var targetId = this.getAttribute("href").slice(1);
-      var target = document.getElementById(targetId);
-      if (!target) return;
-      var tab = target.closest(".fasttab");
-      if (tab) {
-        var header = tab.querySelector(".fasttab-header");
-        var body = tab.querySelector(".fasttab-body");
-        if (header && body && body.classList.contains("hidden")) {
-          header.classList.remove("collapsed");
-          body.classList.remove("hidden");
-        }
-      }
-      document.querySelectorAll(".post-toc .toc-item").forEach(function(l){ l.classList.remove("active"); });
-      this.classList.add("active");
-      setTimeout(function(){ target.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
-    });
-  });
-  document.querySelectorAll(".post-toc .toc-chevron[data-toc-toggle]").forEach(function(chevron){
-    chevron.addEventListener("click", function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      var id = this.getAttribute("data-toc-toggle");
-      var children = document.getElementById("tocChildren-" + id);
-      var row = this.closest(".toc-h1-row");
-      if (children) children.classList.toggle("collapsed");
-      if (row) row.classList.toggle("collapsed");
-    });
-  });
-})();
-</script>
 </body>
 </html>

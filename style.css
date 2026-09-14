@@ -293,3 +293,124 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
   .app-bar .icon-btn{display:none;}
   .post-title{font-size:19px;}
 }
+
+/* ============================================================
+   Post content tables
+   ============================================================ */
+.fasttab-body table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+  margin:0 0 16px;
+}
+.fasttab-body thead th{
+  text-align:left;
+  font-weight:600;
+  font-size:12px;
+  color:var(--text-secondary);
+  background:var(--bg-workspace);
+  padding:8px 12px;
+  border:1px solid var(--border);
+  vertical-align:top;
+}
+.fasttab-body tbody td{
+  padding:8px 12px;
+  border:1px solid #e6e4e2;
+  vertical-align:top;
+}
+.fasttab-body tbody tr:nth-child(even){background:#fafaf9;}
+.fasttab-body table p{margin:0 0 6px;}
+.fasttab-body table p:last-child{margin-bottom:0;}
+
+/* ============================================================
+   Callout panels (NOTE / IMPORTANT / CAUTION / KNOWN GAP /
+   GOOD PRACTICE / FOR MANAGEMENT)
+   ============================================================ */
+.callout{
+  border-left:3px solid var(--text-tertiary);
+  background:var(--bg-workspace);
+  border-radius:0;
+  padding:10px 14px;
+  margin:0 0 14px;
+}
+.callout-label{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.4px;
+  margin-bottom:3px;
+  color:var(--text-secondary);
+}
+.callout-body{font-size:13px;line-height:1.6;}
+.callout-body p{margin:0 0 8px;}
+.callout-body p:last-child{margin-bottom:0;}
+.callout-body table{margin-bottom:0;}
+
+.callout-note{border-left-color:var(--accent);background:var(--accent-tint);}
+.callout-note .callout-label{color:var(--accent-dark);}
+.callout-important{border-left-color:var(--accent);background:var(--accent-tint);}
+.callout-important .callout-label{color:var(--accent-dark);}
+.callout-caution{border-left-color:var(--red);background:#fdecea;}
+.callout-caution .callout-label{color:#8a1f24;}
+.callout-gap{border-left-color:var(--amber);background:#fdf3e2;}
+.callout-gap .callout-label{color:#7a6200;}
+.callout-practice{border-left-color:var(--green);background:#eef7f1;}
+.callout-practice .callout-label{color:#0b5c30;}
+.callout-management{border-left-color:var(--green);background:#eef7f1;}
+.callout-management .callout-label{color:#0b5c30;}
+
+/* ============================================================
+   Print — Appendix D checklists and reconciliation evidence
+   ============================================================ */
+@media print{
+  .app-bar,.nav-pane,.nav-toggle,.nav-scrim,.command-bar,.breadcrumb,.grid-footer{display:none !important;}
+  body{background:#fff;font-size:11pt;}
+  .shell{display:block;}
+  .main,.main.narrow{max-width:none;padding:0;}
+  .fasttabs,.fasttab,.post-header{border:none;}
+  .fasttab-header{background:none;padding:10px 0 4px;font-size:13pt;border-bottom:1px solid #999;}
+  .fasttab-header .chevron{display:none;}
+  .fasttab-body{display:block !important;padding:0;}
+  .fasttab-body img{max-width:100%;page-break-inside:avoid;}
+  .fasttab-body table,.callout{page-break-inside:avoid;}
+  .fasttab-body h2,.fasttab-body h3{page-break-after:avoid;}
+  a{color:#000;text-decoration:none;}
+}
+
+/* Callouts that live as a full-width row inside a data table */
+.fasttab-body tbody td.callout-cell{
+  border-left:3px solid var(--text-tertiary);
+  background:var(--bg-workspace);
+}
+.fasttab-body tbody tr:nth-child(even) td.callout-cell{background:var(--bg-workspace);}
+.fasttab-body td.callout-cell > p:first-child > strong{
+  font-size:11px;
+  letter-spacing:.4px;
+  color:var(--text-secondary);
+}
+td.callout-cell.callout-note,
+td.callout-cell.callout-important{border-left-color:var(--accent);}
+.fasttab-body tbody td.callout-cell.callout-note,
+.fasttab-body tbody td.callout-cell.callout-important,
+.fasttab-body tbody tr:nth-child(even) td.callout-cell.callout-note,
+.fasttab-body tbody tr:nth-child(even) td.callout-cell.callout-important{background:var(--accent-tint);}
+.fasttab-body td.callout-cell.callout-note > p:first-child > strong,
+.fasttab-body td.callout-cell.callout-important > p:first-child > strong{color:var(--accent-dark);}
+
+td.callout-cell.callout-caution{border-left-color:var(--red);}
+.fasttab-body tbody td.callout-cell.callout-caution,
+.fasttab-body tbody tr:nth-child(even) td.callout-cell.callout-caution{background:#fdecea;}
+.fasttab-body td.callout-cell.callout-caution > p:first-child > strong{color:#8a1f24;}
+
+td.callout-cell.callout-gap{border-left-color:var(--amber);}
+.fasttab-body tbody td.callout-cell.callout-gap,
+.fasttab-body tbody tr:nth-child(even) td.callout-cell.callout-gap{background:#fdf3e2;}
+.fasttab-body td.callout-cell.callout-gap > p:first-child > strong{color:#7a6200;}
+
+td.callout-cell.callout-practice,
+td.callout-cell.callout-management{border-left-color:var(--green);}
+.fasttab-body tbody td.callout-cell.callout-practice,
+.fasttab-body tbody td.callout-cell.callout-management,
+.fasttab-body tbody tr:nth-child(even) td.callout-cell.callout-practice,
+.fasttab-body tbody tr:nth-child(even) td.callout-cell.callout-management{background:#eef7f1;}
+.fasttab-body td.callout-cell.callout-practice > p:first-child > strong,
+.fasttab-body td.callout-cell.callout-management > p:first-child > strong{color:#0b5c30;}
