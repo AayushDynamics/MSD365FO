@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MS D365 F&O — Aayush Tiwari</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Reduced size for longer titles/series in tiles */
+  .tile-value.tile-value-sm {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+</style>
 </head>
 
 <body>
@@ -135,17 +143,17 @@
         </div>
 
 
-        <!-- Most Recent Series -->
+        <!-- Most Recent Blog -->
         <div class="tile tile-amber">
 
           <div
-            class="tile-value"
+            class="tile-value tile-value-sm"
             id="recentSeriesName">
             —
           </div>
 
           <div class="tile-label">
-            Most recent series
+            Most recent blog
           </div>
 
           <div
@@ -157,18 +165,19 @@
         </div>
 
 
-        <!-- Author -->
+        <!-- Authors -->
         <div class="tile tile-neutral">
 
-          <div class="tile-value" id="authorName">
-            1
+          <div class="tile-value" id="authorCount">
+            0
           </div>
 
-          <div class="tile-label">
+          <div class="tile-label" id="authorLabel">
             Author
           </div>
 
           <div class="tile-meta" id="authorMeta">
+            No authors yet
           </div>
 
         </div>
@@ -267,31 +276,7 @@
 
 /* ============================================================
    CENTRAL POST DATA
-   ============================================================
-
-   THIS IS THE ONLY PLACE YOU NEED TO UPDATE WHEN
-   ADDING A NEW POST.
-
-   Add a new object inside SITE_DATA.posts.
-
-   Example:
-
-   {
-     title: 'My New Article',
-     url: 'posts/my-new-article.html',
-     module: 'Fixed assets',
-     submodule: 'Major Functionalities',
-     series: 'Fixed Assets',
-     excerpt: 'Article description...',
-     date: 'Sep 20, 2026',
-     dateSort: '2026-09-20',
-     readTime: '8 min',
-     author: 'Aayush Tiwari'
-   }
-
-   Everything else on the Home page is calculated automatically.
    ============================================================ */
-
 
 var SITE_DATA = {
 
@@ -405,7 +390,6 @@ var SITE_DATA = {
       readTime: '25 min',
       author: 'Aayush Tiwari'
     }
-
 
   ]
 
@@ -569,13 +553,18 @@ try {
 
 
       document.getElementById(
-        "authorName"
-      ).textContent = "—";
+        "authorCount"
+      ).textContent = "0";
+
+
+      document.getElementById(
+        "authorLabel"
+      ).textContent = "Author";
 
 
       document.getElementById(
         "authorMeta"
-      ).textContent = "No posts yet";
+      ).textContent = "No authors yet";
 
 
       return;
@@ -646,19 +635,23 @@ try {
 
 
     document.getElementById(
-      "authorName"
+      "authorCount"
     ).textContent =
-      authors.length > 1
-        ? authors.length
-        : (latestPost.author || "—");
+      authors.length;
+
+
+    document.getElementById(
+      "authorLabel"
+    ).textContent =
+      authors.length === 1
+        ? "Author"
+        : "Authors";
 
 
     document.getElementById(
       "authorMeta"
     ).textContent =
-      authors.length > 1
-        ? authors.join(" · ")
-        : (latestPost.author || "No posts yet");
+      authors.join(" · ");
 
   }
 
