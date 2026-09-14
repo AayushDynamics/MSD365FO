@@ -137,6 +137,49 @@ document.addEventListener('DOMContentLoaded', function(){
   renderGrid(null, null);
 });
 
+// ===== Post pages: "Collapse all" / "Expand all" for the ON THIS PAGE tree =====
+document.addEventListener('DOMContentLoaded', function(){
+  const btn = document.getElementById('collapseAllNavBtn');
+  const toc = document.getElementById('postToc');
+  if(!btn || !toc) return;
+
+  function chevrons(){
+    return Array.prototype.slice.call(
+      toc.querySelectorAll('.toc-h1-row .toc-chevron[data-toc-toggle]')
+    );
+  }
+
+  function allCollapsed(){
+    const list = chevrons();
+    return list.length > 0 && list.every(function(ch){
+      const row = ch.closest('.toc-h1-row');
+      return row && row.classList.contains('collapsed');
+    });
+  }
+
+  function syncLabel(){
+    btn.textContent = allCollapsed() ? 'Expand all' : 'Collapse all';
+  }
+
+  btn.addEventListener('click', function(){
+    const collapse = !allCollapsed();
+    chevrons().forEach(function(ch){
+      const row = ch.closest('.toc-h1-row');
+      const children = document.getElementById('tocChildren-' + ch.getAttribute('data-toc-toggle'));
+      if(row) row.classList.toggle('collapsed', collapse);
+      if(children) children.classList.toggle('collapsed', collapse);
+    });
+    syncLabel();
+  });
+
+  // Keep the label honest when sections are toggled one at a time
+  toc.addEventListener('click', function(e){
+    if(e.target.closest('.toc-chevron[data-toc-toggle]')) setTimeout(syncLabel, 0);
+  });
+
+  syncLabel();
+});
+
 // Contact form (static demo)
 document.addEventListener('DOMContentLoaded', function(){
   const contactForm = document.getElementById('contactForm');
