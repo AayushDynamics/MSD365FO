@@ -37,32 +37,34 @@
   <div class="shell">
 
     <div class="nav-pane">
+      <div class="nav-pane-inner">
 
-      <div class="nav-section-label">SITE</div>
+        <div class="nav-section-label">SITE</div>
 
-      <div class="nav-item active" id="homeNavItem">
-        Home
+        <div class="nav-item active" id="homeNavItem">
+          Home
+        </div>
+
+        <a class="nav-item" href="about.html">
+          About
+        </a>
+
+        <a class="nav-item" href="contact.html">
+          Contact
+        </a>
+
+        <div class="nav-divider"></div>
+
+        <div class="nav-section-label">MODULES</div>
+
+        <div class="module-tree" id="moduleTree">
+          <!--
+            Dynamically populated from SITE_DATA.posts.
+            Only modules and submodules containing posts are displayed.
+          -->
+        </div>
+
       </div>
-
-      <a class="nav-item" href="about.html">
-        About
-      </a>
-
-      <a class="nav-item" href="contact.html">
-        Contact
-      </a>
-
-      <div class="nav-divider"></div>
-
-      <div class="nav-section-label">MODULES</div>
-
-      <div class="module-tree" id="moduleTree">
-        <!--
-          Dynamically populated from SITE_DATA.posts.
-          Only modules and submodules containing posts are displayed.
-        -->
-      </div>
-
     </div>
 
 
@@ -158,7 +160,7 @@
         <!-- Author -->
         <div class="tile tile-neutral">
 
-          <div class="tile-value">
+          <div class="tile-value" id="authorName">
             1
           </div>
 
@@ -166,7 +168,7 @@
             Author
           </div>
 
-          <div class="tile-meta">
+          <div class="tile-meta" id="authorMeta">
             Aayush Tiwari
           </div>
 
@@ -220,7 +222,7 @@
               </th>
 
               <th>
-                Status
+                Author
               </th>
 
               <th>
@@ -284,7 +286,8 @@
      excerpt: 'Article description...',
      date: 'Sep 20, 2026',
      dateSort: '2026-09-20',
-     readTime: '8 min'
+     readTime: '8 min',
+     author: 'Aayush Tiwari'
    }
 
    Everything else on the Home page is calculated automatically.
@@ -292,14 +295,6 @@
 
 
 var SITE_DATA = {
-
-  /*
-   * These are retained as optional reference lists.
-   * The dashboard and navigation DO NOT depend on these lists.
-   *
-   * Modules are automatically discovered from SITE_DATA.posts.
-   * Submodules are automatically discovered from SITE_DATA.posts.
-   */
 
   modules: [
     "Accounts payable",
@@ -326,16 +321,6 @@ var SITE_DATA = {
     "Major Functionalities"
   ],
 
-
-  /*
-   * ==========================================================
-   * POSTS
-   * ==========================================================
-   *
-   * ADD NEW POSTS HERE ONLY.
-   *
-   * The dashboard reads everything from this array.
-   */
 
   posts: [
 
@@ -418,7 +403,8 @@ var SITE_DATA = {
       excerpt: 'Get familiar with configuring and executing bank Reconciliation in D365 F&O',
       date: 'Sep 14, 2026',
       dateSort: '2026-09-14',
-      readTime: '25 min'
+      readTime: '25 min',
+      author: 'Aayush Tiwari'
     }
 
 
@@ -427,10 +413,6 @@ var SITE_DATA = {
 };
 
 
-
-/* ============================================================
-   DASHBOARD ELEMENTS
-   ============================================================ */
 
 try {
 
@@ -460,14 +442,6 @@ try {
 
 
 
-  /* ==========================================================
-     UTILITY FUNCTIONS
-     ========================================================== */
-
-
-  /*
-   * Return posts sorted newest first.
-   */
   function getSortedPosts() {
 
     return SITE_DATA.posts
@@ -483,18 +457,6 @@ try {
 
 
 
-  /*
-   * Return unique modules from actual posts.
-   *
-   * IMPORTANT:
-   * This does NOT rely on SITE_DATA.modules.
-   *
-   * Therefore adding:
-   *
-   * module: "Fixed assets"
-   *
-   * automatically creates the module.
-   */
   function getUniqueModules() {
 
     var moduleMap = {};
@@ -522,10 +484,33 @@ try {
 
 
 
-  /*
-   * Escape HTML characters before inserting
-   * user-entered content into the page.
-   */
+  function getUniqueAuthors() {
+
+    var authorMap = {};
+
+    for (
+      var i = 0;
+      i < SITE_DATA.posts.length;
+      i++
+    ) {
+
+      var post =
+        SITE_DATA.posts[i];
+
+      if (post.author) {
+
+        authorMap[post.author] = true;
+
+      }
+
+    }
+
+    return Object.keys(authorMap);
+
+  }
+
+
+
   function escapeHTML(value) {
 
     if (value === null ||
@@ -546,22 +531,11 @@ try {
 
 
 
-  /* ==========================================================
-     DYNAMIC HOME DASHBOARD
-     ========================================================== */
-
-
   function updateHomeDashboard() {
 
     var posts =
       SITE_DATA.posts || [];
 
-
-    /*
-     * --------------------------------------------------------
-     * No posts
-     * --------------------------------------------------------
-     */
 
     if (posts.length === 0) {
 
@@ -595,17 +569,21 @@ try {
       ).textContent = "No posts yet";
 
 
+      document.getElementById(
+        "authorName"
+      ).textContent = "—";
+
+
+      document.getElementById(
+        "authorMeta"
+      ).textContent = "No posts yet";
+
+
       return;
 
     }
 
 
-
-    /*
-     * --------------------------------------------------------
-     * SORT POSTS
-     * --------------------------------------------------------
-     */
 
     var sortedPosts =
       getSortedPosts();
@@ -616,24 +594,12 @@ try {
 
 
 
-    /*
-     * --------------------------------------------------------
-     * 1. PUBLISHED POSTS
-     * --------------------------------------------------------
-     */
-
     document.getElementById(
       "publishedPostsCount"
     ).textContent =
       posts.length;
 
 
-
-    /*
-     * --------------------------------------------------------
-     * 2. LAST POSTED DATE
-     * --------------------------------------------------------
-     */
 
     document.getElementById(
       "lastPostedDate"
@@ -642,12 +608,6 @@ try {
       latestPost.date;
 
 
-
-    /*
-     * --------------------------------------------------------
-     * 3. UNIQUE MODULES
-     * --------------------------------------------------------
-     */
 
     var modules =
       getUniqueModules();
@@ -667,14 +627,6 @@ try {
 
 
 
-    /*
-     * --------------------------------------------------------
-     * 4. MOST RECENT SERIES
-     * --------------------------------------------------------
-     *
-     * The series comes from the newest post.
-     */
-
     document.getElementById(
       "recentSeriesName"
     ).textContent =
@@ -683,39 +635,40 @@ try {
 
 
 
-    /*
-     * Show the latest article belonging to
-     * the most recently published series.
-     */
-
     document.getElementById(
       "recentSeriesPost"
     ).textContent =
       latestPost.title;
 
+
+
+    var authors =
+      getUniqueAuthors();
+
+
+    document.getElementById(
+      "authorName"
+    ).textContent =
+      authors.length > 1
+        ? authors.length
+        : (latestPost.author || "—");
+
+
+    document.getElementById(
+      "authorMeta"
+    ).textContent =
+      authors.length > 1
+        ? authors.join(" · ")
+        : (latestPost.author || "No posts yet");
+
   }
 
-
-
-  /* ==========================================================
-     DYNAMIC MODULE TREE
-     ========================================================== */
 
 
   function buildModuleTree() {
 
     if (!treeEl) return;
 
-
-    /*
-     * Group posts:
-     *
-     * module
-     *    ↓
-     * submodule
-     *       ↓
-     * posts
-     */
 
     var grouped = {};
 
@@ -754,18 +707,10 @@ try {
 
 
 
-    /*
-     * Get modules directly from posts.
-     */
-
     var modules =
       Object.keys(grouped);
 
 
-
-    /*
-     * Sort modules alphabetically.
-     */
 
     modules.sort();
 
@@ -774,10 +719,6 @@ try {
     var treeHTML = "";
 
 
-
-    /*
-     * Build module tree.
-     */
 
     for (
       var m = 0;
@@ -882,19 +823,10 @@ try {
 
 
 
-    /*
-     * Reattach module click events.
-     */
-
     attachModuleEvents();
 
   }
 
-
-
-  /* ==========================================================
-     MODULE TREE EVENTS
-     ========================================================== */
 
 
   function attachModuleEvents() {
@@ -1043,11 +975,6 @@ try {
 
 
 
-  /* ==========================================================
-     POST GRID
-     ========================================================== */
-
-
   function renderGrid(
     moduleFilter,
     submoduleFilter
@@ -1056,18 +983,10 @@ try {
     if (!tbody) return;
 
 
-    /*
-     * Start with every post.
-     */
-
     var posts =
       getSortedPosts();
 
 
-
-    /*
-     * Apply module filter.
-     */
 
     if (moduleFilter) {
 
@@ -1085,10 +1004,6 @@ try {
 
 
 
-    /*
-     * Apply submodule filter.
-     */
-
     if (submoduleFilter) {
 
       posts =
@@ -1104,10 +1019,6 @@ try {
     }
 
 
-
-    /*
-     * Dynamic grid title.
-     */
 
     if (titleEl) {
 
@@ -1132,10 +1043,6 @@ try {
     }
 
 
-
-    /*
-     * Empty state.
-     */
 
     if (posts.length === 0) {
 
@@ -1182,10 +1089,6 @@ try {
 
 
 
-    /*
-     * Rebuild grid if empty-state replaced table.
-     */
-
     if (
       !document.getElementById(
         "postGrid"
@@ -1206,7 +1109,7 @@ try {
 
               '<th>Module</th>' +
 
-              '<th>Status</th>' +
+              '<th>Author</th>' +
 
               '<th>Published</th>' +
 
@@ -1255,10 +1158,6 @@ try {
     }
 
 
-
-    /*
-     * Build rows.
-     */
 
     var rowsHTML = "";
 
@@ -1315,11 +1214,9 @@ try {
 
           '<td>' +
 
-            '<span class="status-dot">' +
-
-              'Published' +
-
-            '</span>' +
+            escapeHTML(
+              p.author || "Aayush Tiwari"
+            ) +
 
           '</td>' +
 
@@ -1352,10 +1249,6 @@ try {
 
 
 
-    /*
-     * Dynamic post count.
-     */
-
     if (countEl) {
 
       countEl.textContent =
@@ -1374,12 +1267,6 @@ try {
 
 
 
-    /*
-     * Dynamic page information.
-     *
-     * Currently everything is displayed on one page.
-     */
-
     if (pageInfo) {
 
       pageInfo.textContent =
@@ -1389,11 +1276,6 @@ try {
 
   }
 
-
-
-  /* ==========================================================
-     HOME BUTTON
-     ========================================================== */
 
 
   if (homeLink) {
@@ -1441,11 +1323,6 @@ try {
 
   }
 
-
-
-  /* ==========================================================
-     SEARCH
-     ========================================================== */
 
 
   if (searchBox) {
@@ -1497,11 +1374,6 @@ try {
 
 
 
-  /* ==========================================================
-     REFRESH BUTTON
-     ========================================================== */
-
-
   var refreshButton =
     document.getElementById(
       "refreshButton"
@@ -1514,10 +1386,6 @@ try {
       "click",
       function() {
 
-        /*
-         * Recalculate everything.
-         */
-
         updateHomeDashboard();
 
         buildModuleTree();
@@ -1527,10 +1395,6 @@ try {
           null
         );
 
-
-        /*
-         * Clear search.
-         */
 
         if (searchBox) {
 
@@ -1545,10 +1409,6 @@ try {
 
 
 
-  /* ==========================================================
-     INITIAL PAGE LOAD
-     ========================================================== */
-
   updateHomeDashboard();
 
   buildModuleTree();
@@ -1561,10 +1421,6 @@ try {
 
 }
 
-
-/* ============================================================
-   ERROR HANDLING
-   ============================================================ */
 
 catch (err) {
 
@@ -1597,10 +1453,6 @@ catch (err) {
 }
 
 
-
-/* ============================================================
-   FASTTAB COLLAPSE / EXPAND
-   ============================================================ */
 
 document.addEventListener(
   "click",
