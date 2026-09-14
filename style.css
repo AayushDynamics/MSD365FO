@@ -38,37 +38,36 @@ a:hover{text-decoration:underline;}
 .nav-pane{width:250px;flex-shrink:0;background:var(--bg-panel);border-right:1px solid var(--border);padding:10px 0;position:relative;}
 .nav-pane-inner{position:sticky;top:44px;max-height:calc(100vh - 44px);overflow-y:auto;}
 .nav-section-label{font-size:11px;color:var(--text-tertiary);padding:8px 16px 4px;font-weight:600;}
-/* Container to place "ON THIS PAGE" and "Collapse all" side by side */
-.nav-section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px 4px;
+
+/* Header container to hold label and Collapse button on the same line */
+.nav-section-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 16px 4px;
+}
+.nav-section-header .nav-section-label{
+  padding:0;
 }
 
-/* Reset default padding when the label is inside the flex header */
-.nav-section-header .nav-section-label {
-  padding: 0;
+/* Compact Collapse all button */
+.collapse-all-btn{
+  background:transparent;
+  border:1px solid var(--border);
+  border-radius:2px;
+  font-family:var(--font);
+  font-size:11px;
+  color:var(--accent);
+  padding:1px 6px;
+  cursor:pointer;
+  line-height:1.4;
+  transition:all .15s ease;
+}
+.collapse-all-btn:hover{
+  background-color:var(--bg-workspace);
+  border-color:var(--accent);
 }
 
-/* Style for the compact "Collapse all" button */
-.collapse-all-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  font-family: var(--font);
-  font-size: 11px;
-  color: var(--accent);
-  padding: 1px 6px;
-  cursor: pointer;
-  line-height: 1.4;
-  transition: all 0.15s ease;
-}
-
-.collapse-all-btn:hover {
-  background-color: var(--bg-workspace);
-  border-color: var(--accent);
-}
 .nav-item{display:flex;align-items:center;gap:10px;padding:7px 16px;color:var(--text);cursor:pointer;border-left:3px solid transparent;font-size:13px;}
 .nav-item:hover{background:var(--bg-workspace);text-decoration:none;}
 .nav-item.active{background:var(--accent-tint);border-left:3px solid var(--accent);color:var(--accent-dark);font-weight:600;}
