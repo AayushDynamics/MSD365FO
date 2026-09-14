@@ -137,6 +137,49 @@ document.addEventListener('DOMContentLoaded', function(){
   renderGrid(null, null);
 });
 
+// ===== Mobile navigation drawer (all pages) =====
+// The button and scrim are injected here so no page markup has to change.
+document.addEventListener('DOMContentLoaded', function(){
+  const bar = document.querySelector('.app-bar');
+  const pane = document.querySelector('.nav-pane');
+  if(!bar || !pane || document.getElementById('navToggle')) return;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'nav-toggle';
+  btn.id = 'navToggle';
+  btn.setAttribute('aria-label', 'Toggle navigation');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  bar.insertBefore(btn, bar.firstChild);
+
+  const scrim = document.createElement('div');
+  scrim.className = 'nav-scrim';
+  document.body.appendChild(scrim);
+
+  function setOpen(open){
+    document.body.classList.toggle('nav-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', function(){
+    setOpen(!document.body.classList.contains('nav-open'));
+  });
+  scrim.addEventListener('click', function(){ setOpen(false); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setOpen(false);
+  });
+
+  // Close once a destination is chosen, but not when expanding the tree
+  pane.addEventListener('click', function(e){
+    if(e.target.closest('a.nav-item, a.toc-item, .submodule-item, #homeNavItem')) setOpen(false);
+  });
+
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 900) setOpen(false);
+  });
+});
+
 // ===== Post pages: "Collapse all" / "Expand all" for the ON THIS PAGE tree =====
 document.addEventListener('DOMContentLoaded', function(){
   const btn = document.getElementById('collapseAllNavBtn');

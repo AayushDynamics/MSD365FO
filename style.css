@@ -237,13 +237,59 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
 
 .hidden{display:none !important;}
 
+/* Hamburger button — injected by script.js, hidden on desktop */
+.nav-toggle{display:none;}
+.nav-scrim{display:none;}
+
+/* Long URLs, MT940 tag strings and ASCII diagrams must not widen the page */
+.fasttab-body{overflow-wrap:break-word;}
+.fasttab-body td,.fasttab-body th{overflow-wrap:anywhere;}
+
 @media (max-width: 900px){
-  .nav-pane{display:none;}
+  /* Keep the app bar in view so the drawer always tucks under it */
+  .app-bar{position:sticky;top:0;z-index:70;}
+  .app-bar .searchbox{width:120px;flex-shrink:1;min-width:0;}
+
+  .nav-toggle{
+    display:flex;flex-direction:column;justify-content:center;gap:3px;
+    width:30px;height:30px;padding:0 5px;margin-right:2px;
+    background:transparent;border:none;border-radius:2px;
+    cursor:pointer;flex-shrink:0;
+  }
+  .nav-toggle span{display:block;height:2px;background:#fff;border-radius:1px;}
+  .nav-toggle:hover{background:rgba(255,255,255,.12);}
+
+  /* Navigation pane becomes an off-canvas drawer instead of disappearing */
+  .nav-pane{
+    display:block;
+    position:fixed;top:44px;left:0;bottom:0;z-index:60;
+    width:min(280px,82vw);
+    transform:translateX(-100%);
+    transition:transform .18s ease;
+    box-shadow:2px 0 8px rgba(0,0,0,.18);
+    overflow-y:auto;
+  }
+  body.nav-open .nav-pane{transform:none;}
+  .nav-pane-inner{position:static;max-height:none;overflow:visible;}
+
+  .nav-scrim{
+    position:fixed;top:44px;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,.35);z-index:55;
+  }
+  body.nav-open .nav-scrim{display:block;}
+  body.nav-open{overflow:hidden;}
+
+  /* Wide post tables scroll on their own instead of stretching the page */
+  .fasttab-body table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .fasttab-body ol{padding-left:20px;}
+
   .tile-row{grid-template-columns:repeat(2,1fr);}
-  .app-bar .searchbox{width:120px;}
   .post-excerpt{max-width:none;}
   .main{padding:14px;}
 }
 @media (max-width: 600px){
   .tile-row{grid-template-columns:1fr 1fr;}
+  .app-bar .site-sub{display:none;}
+  .app-bar .icon-btn{display:none;}
+  .post-title{font-size:19px;}
 }
