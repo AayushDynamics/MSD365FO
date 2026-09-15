@@ -264,6 +264,10 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
 .nav-toggle{display:none;}
 .nav-scrim{display:none;}
 
+/* Horizontal scroll container for wide post tables (added by script.js) */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 16px;}
+.table-scroll > table{margin-bottom:0;}
+
 /* Long URLs, MT940 tag strings and ASCII diagrams must not widen the page */
 .fasttab-body{overflow-wrap:break-word;}
 .fasttab-body td,.fasttab-body th{overflow-wrap:anywhere;}
@@ -300,8 +304,8 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
   body.nav-open .nav-scrim{display:block;}
   body.nav-open{overflow:hidden;}
 
-  /* Wide post tables scroll on their own instead of stretching the page */
-  .fasttab-body table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  /* Wide post tables scroll inside their wrapper instead of stretching the page */
+  .table-scroll table{width:auto;min-width:100%;}
   .fasttab-body ol{padding-left:20px;}
 
   .tile-row{grid-template-columns:repeat(2,1fr);}
@@ -310,6 +314,7 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
 }
 @media (max-width: 600px){
   .tile-row{grid-template-columns:1fr 1fr;}
+  .grid-footer{flex-direction:column;align-items:flex-start;gap:6px;}
   .app-bar .site-sub{display:none;}
   .app-bar .icon-btn{display:none;}
   .post-title{font-size:19px;}
@@ -382,6 +387,9 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
 /* ============================================================
    Print — Appendix D checklists and reconciliation evidence
    ============================================================ */
+@media (max-width: 480px){
+  .tile-row{grid-template-columns:1fr;}
+}
 @media print{
   .app-bar,.nav-pane,.nav-toggle,.nav-scrim,.command-bar,.breadcrumb,.grid-footer{display:none !important;}
   body{background:#fff;font-size:11pt;}
@@ -392,6 +400,7 @@ table.data-grid{width:100%;border-collapse:collapse;font-size:13px;}
   .fasttab-header .chevron{display:none;}
   .fasttab-body{display:block !important;padding:0;}
   .fasttab-body img{max-width:100%;page-break-inside:avoid;}
+  .table-scroll{overflow:visible;}
   .fasttab-body table,.callout{page-break-inside:avoid;}
   .fasttab-body h2,.fasttab-body h3{page-break-after:avoid;}
   a{color:#000;text-decoration:none;}

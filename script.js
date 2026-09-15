@@ -138,6 +138,20 @@ document.addEventListener('DOMContentLoaded', function(){
   renderGrid(null, null);
 });
 
+// ===== Post pages: give wide tables their own horizontal scroll =====
+// A wrapper keeps thead/tbody column alignment intact, which setting
+// display:block on the table itself does not.
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.fasttab-body table').forEach(function(table){
+    if(table.parentElement && table.parentElement.classList.contains('table-scroll')) return;
+    if(table.closest('.table-scroll')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'table-scroll';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
+  });
+});
+
 // ===== Mobile navigation drawer (all pages) =====
 // The button and scrim are injected here so no page markup has to change.
 document.addEventListener('DOMContentLoaded', function(){
