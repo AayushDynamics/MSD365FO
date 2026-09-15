@@ -303,13 +303,66 @@ document.addEventListener('DOMContentLoaded', function(){
   syncLabel();
 });
 
-// Contact form (static demo)
+// ===== Contact form (posts to Formspree without leaving the page) =====
 document.addEventListener('DOMContentLoaded', function(){
-  const contactForm = document.getElementById('contactForm');
-  if(contactForm){
-    contactForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      document.getElementById('formStatus').textContent = 'This is a static demo form — connect it to Formspree or a mail-to link to make it live.';
-    });
+  const form = document.getElementById('contactForm');
+  if(!form) return;
+
+  const status = document.getElementById('formStatus');
+  const submit = document.getElementById('contactSubmit');
+
+  function setStatus(text, kind){
+    if(!status) return;
+    status.textContent = text;
+    status.style.color = kind === 'error' ? 'var(--red)'
+      : kind === 'success' ? 'var(--green)'
+      : 'var(--text-secondary)';
   }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const endpoint = form.getAttribute('action') || '';
+    if(endpoint.indexOf('YOUR_FORM_ID') !== -1){
+      setStatus('This form is not connected yet. Paste your Formspree form ID into the action attribute in contact.html.', 'error');
+      return;
+    }
+
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    const original = submit ? submit.textContent : '';
+    if(submit){ submit.disabled = true; submit.textContent = 'Sending...'; }
+    setStatus('Sending your message...');
+
+    fetch(endpoint, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(response){
+      if(response.ok){
+        form.reset();
+        setStatus('Thanks — your message has been sent. I will get back to you by email.', 'success');
+        return;
+      }
+      return response.json().then(function(data){
+        const detail = data && data.errors
+          ? data.errors.map(function(err){ return err.message; }).join(', ')
+          : 'Something went wrong.';
+        const tidy = /[.!?]$/.test(detail) ? detail : detail + '.';
+        setStatus(tidy + ' Please try again, or email me directly.', 'error');
+      }).catch(function(){
+        setStatus('Something went wrong. Please try again, or email me directly.', 'error');
+      });
+    })
+    .catch(function(){
+      setStatus('Could not reach the mail service. Check your connection and try again.', 'error');
+    })
+    .then(function(){
+      if(submit){ submit.disabled = false; submit.textContent = original; }
+    });
+  });
 });
