@@ -366,3 +366,230 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 });
+
+// ============================================================
+// Site identity — travels with every printed PDF
+// ============================================================
+const SITE_META = {
+  name:    'MS D365 F&O',
+  tagline: 'Exploring D365 Finance and Operations',
+  url:     'https://aayushdynamics.github.io/MSD365FO',
+  author:  'Aayush Tiwari',
+  role:    'Senior Functional Consultant \u2014 Finance, Microsoft Dynamics 365 F&O',
+  bio:     'Hands-on experience across D365 F&O implementations, migrations, support, finance transformation and India localization \u2014 translating business requirements into practical ERP solutions.'
+};
+
+// ============================================================
+// Floating back-to-top button with scroll progress ring
+// ============================================================
+document.addEventListener('DOMContentLoaded', function(){
+  if(document.getElementById('toTopBtn')) return;
+
+  const R = 17;
+  const CIRC = 2 * Math.PI * R;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'toTopBtn';
+  btn.className = 'to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.setAttribute('title', 'Back to top');
+  btn.innerHTML =
+    '<svg class="to-top-ring" viewBox="0 0 40 40" aria-hidden="true">' +
+      '<circle class="to-top-track" cx="20" cy="20" r="' + R + '"></circle>' +
+      '<circle class="to-top-fill" cx="20" cy="20" r="' + R + '" ' +
+        'stroke-dasharray="' + CIRC.toFixed(2) + '" stroke-dashoffset="' + CIRC.toFixed(2) + '"></circle>' +
+    '</svg>' +
+    '<span class="to-top-arrow" aria-hidden="true">\u2191</span>';
+  document.body.appendChild(btn);
+
+  const fill = btn.querySelector('.to-top-fill');
+  let ticking = false;
+
+  function update(){
+    const doc = document.documentElement;
+    const scrolled = window.pageYOffset || doc.scrollTop || 0;
+    const max = (doc.scrollHeight - doc.clientHeight) || 1;
+    const progress = Math.min(Math.max(scrolled / max, 0), 1);
+    fill.style.strokeDashoffset = (CIRC * (1 - progress)).toFixed(2);
+    btn.classList.toggle('visible', scrolled > 250);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  update();
+});
+
+// ============================================================
+// Print / Save as PDF for posts
+// ============================================================
+document.addEventListener('DOMContentLoaded', function(){
+  const header = document.querySelector('.post-header');
+  const bar = document.querySelector('.command-bar');
+  if(!header || !bar || document.getElementById('printPostBtn')) return;
+
+  const btn = document.createElement('div');
+  btn.className = 'cmd-btn';
+  btn.id = 'printPostBtn';
+  btn.setAttribute('role', 'button');
+  btn.setAttribute('tabindex', '0');
+  btn.innerHTML = '<span class="cmd-icon">\u2399</span><span class="cmd-label">Print blog</span>';
+  bar.appendChild(btn);
+
+  function meta(){
+    const spans = header.querySelectorAll('.post-meta span');
+    const plain = [];
+    spans.forEach(function(s){
+      if(!s.classList.contains('badge') && !s.classList.contains('status-dot')) plain.push(s.textContent.trim());
+    });
+    const descEl = document.querySelector('meta[name="description"]');
+    const urlEl = document.querySelector('meta[property="og:url"]');
+    return {
+      title: (header.querySelector('.post-title') || {}).textContent || document.title,
+      module: (header.querySelector('.badge') || {}).textContent || '',
+      date: plain[0] || '',
+      author: plain[1] || SITE_META.author,
+      readTime: plain[2] || '',
+      description: descEl ? descEl.getAttribute('content') : '',
+      url: urlEl ? urlEl.getAttribute('content') : window.location.href
+    };
+  }
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  // Rebuild the printed cover and contents page from the live DOM
+  function buildPrintMatter(){
+    document.querySelectorAll('.print-only').forEach(function(el){ el.remove(); });
+    const m = meta();
+    const main = document.querySelector('.main');
+    if(!main) return;
+
+    const cover = document.createElement('div');
+    cover.className = 'print-only print-cover';
+    cover.innerHTML =
+      '<div class="print-cover-top">' +
+        '<div class="print-brand">' + esc(SITE_META.name) + '</div>' +
+        '<div class="print-brand-sub">' + esc(SITE_META.tagline) + '</div>' +
+      '</div>' +
+      '<div class="print-cover-mid">' +
+        (m.module ? '<div class="print-cover-module">' + esc(m.module) + '</div>' : '') +
+        '<h1 class="print-cover-title">' + esc(m.title) + '</h1>' +
+        (m.description ? '<p class="print-cover-desc">' + esc(m.description) + '</p>' : '') +
+        '<div class="print-cover-rule"></div>' +
+        '<div class="print-cover-facts">' +
+          '<div><span>Author</span>' + esc(m.author) + '</div>' +
+          (m.date ? '<div><span>Published</span>' + esc(m.date) + '</div>' : '') +
+          (m.readTime ? '<div><span>Reading time</span>' + esc(m.readTime) + '</div>' : '') +
+          '<div><span>Printed</span>' + esc(new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="print-cover-bottom">' +
+        '<div class="print-author-card">' +
+          '<div class="print-author-name">' + esc(SITE_META.author) + '</div>' +
+          '<div class="print-author-role">' + esc(SITE_META.role) + '</div>' +
+          '<p class="print-author-bio">' + esc(SITE_META.bio) + '</p>' +
+        '</div>' +
+        '<div class="print-source">Read online at <strong>' + esc(m.url) + '</strong></div>' +
+      '</div>';
+
+    const toc = document.createElement('div');
+    toc.className = 'print-only print-toc';
+    let rows = '';
+    document.querySelectorAll('#postToc .toc-h1-row, #postToc .toc-item').forEach(function(node){
+      if(node.classList.contains('toc-h1-row')){
+        const link = node.querySelector('.toc-item');
+        if(link) rows += '<a class="print-toc-1" href="' + esc(link.getAttribute('href')) + '">' + esc(link.textContent.trim()) + '</a>';
+      } else if(!node.closest('.toc-h1-row')){
+        const lvl = node.classList.contains('toc-h3') ? 3 : 2;
+        rows += '<a class="print-toc-' + lvl + '" href="' + esc(node.getAttribute('href')) + '">' + esc(node.textContent.trim()) + '</a>';
+      }
+    });
+    toc.innerHTML =
+      '<div class="print-toc-head">' +
+        '<h2>Contents</h2>' +
+        '<p>Every entry below is a live link \u2014 click any line in the PDF to jump straight to that section.</p>' +
+      '</div>' +
+      '<nav class="print-toc-list">' + rows + '</nav>';
+
+    const runHeader = document.createElement('div');
+    runHeader.className = 'print-only print-runner print-runner-header';
+    runHeader.innerHTML =
+      '<span class="print-runner-left">' + esc(SITE_META.name) + '</span>' +
+      '<span class="print-runner-right">' + esc(m.title) + '</span>';
+
+    const runFooter = document.createElement('div');
+    runFooter.className = 'print-only print-runner print-runner-footer';
+    runFooter.innerHTML =
+      '<span class="print-runner-left">' + esc(SITE_META.author) + ' \u00b7 ' + esc(SITE_META.role) + '</span>' +
+      '<span class="print-runner-right">' + esc(SITE_META.url) + '</span>';
+
+    main.insertBefore(toc, main.firstChild);
+    main.insertBefore(cover, main.firstChild);
+    document.body.appendChild(runHeader);
+    document.body.appendChild(runFooter);
+  }
+
+  // Lazy images are not fetched until scrolled into view, so they would be
+  // missing from the PDF. Force them all in before opening the dialog.
+  function loadAllImages(){
+    const imgs = Array.prototype.slice.call(document.querySelectorAll('.fasttab-body img'));
+    const pending = imgs.filter(function(img){ return !img.complete; });
+    imgs.forEach(function(img){
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('decoding', 'sync');
+      if(!img.complete && img.getAttribute('src')) img.src = img.getAttribute('src');
+    });
+    if(pending.length === 0) return Promise.resolve();
+    return Promise.all(pending.map(function(img){
+      return new Promise(function(resolve){
+        if(img.complete) return resolve();
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      });
+    }));
+  }
+
+  function run(){
+    const label = btn.querySelector('.cmd-label');
+    const original = label.textContent;
+    label.textContent = 'Preparing\u2026';
+    btn.classList.add('is-busy');
+
+    // Every section must be open, or collapsed ones print empty
+    document.querySelectorAll('.fasttab-body.hidden').forEach(function(body){
+      body.classList.remove('hidden');
+      const h = body.previousElementSibling;
+      if(h){ h.classList.remove('collapsed'); h.setAttribute('aria-expanded', 'true'); }
+    });
+
+    Promise.race([
+      loadAllImages(),
+      new Promise(function(r){ setTimeout(r, 10000); })
+    ]).then(function(){
+      buildPrintMatter();
+      label.textContent = original;
+      btn.classList.remove('is-busy');
+      window.print();
+    });
+  }
+
+  btn.addEventListener('click', run);
+  btn.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); run(); }
+  });
+
+  window.addEventListener('afterprint', function(){
+    document.querySelectorAll('.print-only').forEach(function(el){ el.remove(); });
+  });
+});
