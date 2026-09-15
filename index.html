@@ -31,6 +31,45 @@
   .tile-link:hover {
     text-decoration: underline;
   }
+
+  /* "Most recent blogs" tile: heading on top, then the latest posts */
+  .tile-heading {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .tile-recent-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tile-recent-item {
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--accent);
+    text-decoration: none;
+    display: block;
+  }
+
+  .tile-recent-item:hover {
+    text-decoration: underline;
+  }
+
+  .tile-recent-date {
+    display: block;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+  }
+
+  .tile-recent-empty {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
 </style>
 </head>
 
@@ -162,23 +201,15 @@
         </div>
 
 
-        <!-- Most Recent Blog -->
+        <!-- Most Recent Blogs -->
         <div class="tile tile-amber">
 
-          <div
-            class="tile-value tile-value-sm"
-            id="recentSeriesName">
-            <a href="#" id="recentBlogTitleLink" class="tile-link">—</a>
+          <div class="tile-heading">
+            Most recent blogs
           </div>
 
-          <div class="tile-label">
-            Most recent blog
-          </div>
-
-          <div
-            class="tile-meta"
-            id="recentSeriesPost">
-            <a href="#" id="recentBlogPostLink" class="tile-link">No posts yet</a>
+          <div class="tile-recent-list" id="recentBlogList">
+            <span class="tile-recent-empty">No posts yet</span>
           </div>
 
         </div>
@@ -539,11 +570,11 @@ try {
       SITE_DATA.posts || [];
 
 
-    var recentTitleLink =
-      document.getElementById("recentBlogTitleLink");
+    var recentList =
+      document.getElementById("recentBlogList");
 
-    var recentPostLink =
-      document.getElementById("recentBlogPostLink");
+
+    var RECENT_COUNT = 2;
 
 
     if (posts.length === 0) {
@@ -563,15 +594,9 @@ try {
       ).textContent = "No modules yet";
 
 
-      if (recentTitleLink) {
-        recentTitleLink.textContent = "—";
-        recentTitleLink.removeAttribute("href");
-      }
-
-
-      if (recentPostLink) {
-        recentPostLink.textContent = "No posts yet";
-        recentPostLink.removeAttribute("href");
+      if (recentList) {
+        recentList.innerHTML =
+          '<span class="tile-recent-empty">No posts yet</span>';
       }
 
 
@@ -643,20 +668,27 @@ try {
 
 
 
-    if (recentTitleLink) {
-      recentTitleLink.textContent =
-        latestPost.series || "Unassigned";
-      recentTitleLink.href =
-        latestPost.url;
-    }
+    if (recentList) {
+
+      var recent =
+        sortedPosts.slice(0, RECENT_COUNT);
 
 
+      recentList.innerHTML =
+        recent
+          .map(function (post) {
+            return (
+              '<a class="tile-recent-item" href="' +
+              escapeHTML(post.url) +
+              '">' +
+              escapeHTML(post.title) +
+              '<span class="tile-recent-date">' +
+              escapeHTML(post.date) +
+              "</span></a>"
+            );
+          })
+          .join("");
 
-    if (recentPostLink) {
-      recentPostLink.textContent =
-        latestPost.title;
-      recentPostLink.href =
-        latestPost.url;
     }
 
 
