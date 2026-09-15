@@ -36,7 +36,27 @@ a:hover{text-decoration:underline;}
 .shell{display:flex;min-height:calc(100vh - 44px);align-items:stretch;}
 
 .nav-pane{width:250px;flex-shrink:0;background:var(--bg-panel);border-right:1px solid var(--border);padding:10px 0;position:relative;}
-.nav-pane-inner{position:sticky;top:44px;max-height:calc(100vh - 44px);overflow-y:auto;}
+.nav-pane-inner{position:static;max-height:none;overflow:visible;}
+
+/* Desktop: the pane itself is the scroll container, pinned under the app bar,
+   so it scrolls independently of the article. */
+@media (min-width: 901px){
+  .nav-pane{
+    position:sticky;
+    top:44px;
+    align-self:flex-start;
+    height:calc(100vh - 44px);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-gutter:stable;
+    scrollbar-width:thin;
+    scrollbar-color:#c8c6c4 transparent;
+  }
+  .nav-pane::-webkit-scrollbar{width:10px;}
+  .nav-pane::-webkit-scrollbar-track{background:transparent;}
+  .nav-pane::-webkit-scrollbar-thumb{background:#c8c6c4;border-radius:5px;border:2px solid var(--bg-panel);}
+  .nav-pane::-webkit-scrollbar-thumb:hover{background:#a19f9d;}
+}
 .nav-section-label{font-size:11px;color:var(--text-tertiary);padding:8px 16px 4px;font-weight:600;}
 
 /* Header container to hold label and Collapse button on the same line */

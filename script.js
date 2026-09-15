@@ -138,19 +138,6 @@ document.addEventListener('DOMContentLoaded', function(){
   renderGrid(null, null);
 });
 
-// ===== Give the navigation pane its own scroll region =====
-// The stylesheet targets .nav-pane-inner, but the pages don't ship that
-// wrapper. Adding it here keeps the pane pinned under the app bar with its
-// own scrollbar, independent of the article.
-document.addEventListener('DOMContentLoaded', function(){
-  const pane = document.querySelector('.nav-pane');
-  if(!pane || pane.querySelector(':scope > .nav-pane-inner')) return;
-  const inner = document.createElement('div');
-  inner.className = 'nav-pane-inner';
-  while(pane.firstChild) inner.appendChild(pane.firstChild);
-  pane.appendChild(inner);
-});
-
 // ===== Mobile navigation drawer (all pages) =====
 // The button and scrim are injected here so no page markup has to change.
 document.addEventListener('DOMContentLoaded', function(){
